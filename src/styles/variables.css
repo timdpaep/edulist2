@@ -1,0 +1,51 @@
+/**
+ * Edulist 2 - Variables file
+ */
+
+:root {
+  /* Colors */
+  --orange: #ef7d01;
+  --green: #5ab031;
+  --purple: #7E57C5;
+  --blue: #109ad4;
+  --black: #141414;
+  --white: #ffffff;
+  --lightGrey: #dddddd;
+
+  /* Color Intentions */
+  --background-color: var(--white);
+  --text-color: var(--black);
+  --section-title-color: var(--orange);
+  --checklist-checkbox-color: var(--green);
+  --ib-default-background-color: var(--orange);
+  --ib-youtube-background-color: #FF0000;
+  --ib-link-background-color: var(--blue);
+  --ib-exercise-background-color: var(--orange);
+
+  /* Loader */
+  --loader-color: var(--orange);
+  --loader-background-color: rgba(221, 221, 221, 0);
+  --loader-width-height: 40px;
+
+  /* Fonts */
+  --primary-font: "Lato", sans-serif;
+
+  /* Elevation */
+  --level-1: 0 1px 3px 0 rgba(0, 24, 88, 0.1), 0 1px 2px 0 rgba(0, 24, 88, 0.06);
+  --level-2: 0 4px 6px -1px rgba(0, 24, 88, 0.1), 0 2px 4px -1px rgba(0, 24, 88, 0.06);
+  --level-3: 0 10px 15px -3px rgba(0, 24, 88, 0.1), 0 4px 6px -2px rgba(0, 24, 88, 0.05);
+  --level-4: 0 20px 25px -5px rgba(0, 24, 88, 0.1), 0 10px 10px -5px rgba(0, 24, 88, 0.04);
+
+  /* Typography */
+  --font-weight: 400;
+  --line-height: 1.75;
+  --h1: 3.052rem;
+  --h2: 2.441rem;
+  --h3: 1.953rem;
+  --h4: 1.563rem;
+  --h5: 1.25rem;
+  --small: 0.8rem;
+
+  /* Layout */
+  --container-gap: 30px;
+}

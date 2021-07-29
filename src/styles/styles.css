@@ -1,0 +1,17 @@
+/**
+ * Edulist 2 - Indexed stylesheet
+ */
+
+/**
+ * Import vendor related css
+ */
+
+@import './normalize.css';
+
+/**
+ * Import app related styles
+ */
+
+@import './variables.css';
+@import './fonts.css';
+@import './app.css';

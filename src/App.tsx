@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { CoursesView, CourseView, CheckListView, EduSideBar } from './Views'
+import { useAppSelector } from './Hooks'
+import { selectSideBar } from './redux/appSlice'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App: React.FC = () => {
+	const sideBar = useAppSelector(selectSideBar)
+	return (
+		<>
+			<Router>
+				<Switch>
+					<Route exact path='/'>
+						<CoursesView />
+					</Route>
+					<Route path='/:slug/:checklistId' component={CheckListView} />
+					<Route path='/:slug' component={CourseView} />
+				</Switch>
+			</Router>
+			<EduSideBar open={sideBar.open} type={sideBar.type} value={sideBar.value} />
+		</>
+	)
 }
 
-export default App;
+export default App
