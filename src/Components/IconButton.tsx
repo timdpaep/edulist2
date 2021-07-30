@@ -1,39 +1,38 @@
 import React, { MouseEvent } from 'react'
-import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faYoutube, faEarlybirds } from '@fortawesome/free-brands-svg-icons'
-import { faLink, faEdit } from '@fortawesome/free-solid-svg-icons'
-import { IconButtonType } from '../enums'
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import device from '../device'
 
 /**
  * Types
  */
 
 interface IIconButtonProps {
-	iconButtonType?: IconButtonType
 	onClick?: (event: MouseEvent<HTMLButtonElement>) => void
-}
-
-interface IIconButtonContainerProps {
-	iconButtonType?: IconButtonType
+	backgroundColor?: string
+	color?: string
+	icon?: IconProp
+	className?: string
 }
 
 /**
- * Framer
+ * Framer Motion
  */
 
-const iconButtonVariants = {
+const closeButtonVariants = {
 	hover: {
-		opacity: 0.5,
+		opacity: 0.4,
 		transition: {
-			duration: 0.1,
+			duration: 0.2,
 		},
 	},
 	pressed: {
 		scale: 0.9,
 		transition: {
-			duration: 0.1,
+			duration: 0.2,
 		},
 	},
 }
@@ -42,37 +41,34 @@ const iconButtonVariants = {
  * Styled Components
  */
 
-const IconButtonContainer = styled(motion.button)<IIconButtonContainerProps>`
-	border-radius: 50%;
-	width: 2rem;
-	height: 2rem;
-	transform-origin: center;
-	background-color: var(--ib-${props => props.iconButtonType}-background-color);
+const IconButtonContainer = styled(motion.button)<IIconButtonProps>`
+	font-size: 2rem;
+	background-color: ${props => props.backgroundColor};
+	box-shadow: none;
+	color: ${props => props.color};
+	padding: 0;
+
+	@media ${device.tablet} {
+		font-size: 1.6rem;
+	}
 `
 
 export const IconButton = ({
-	iconButtonType = IconButtonType.Default,
 	onClick,
-}: IIconButtonProps) => {
-	if (iconButtonType === IconButtonType.None) return null
-	return (
-		<IconButtonContainer
-			iconButtonType={iconButtonType}
-			variants={iconButtonVariants}
-			whileTap='pressed'
-			whileHover='hover'
-			onClick={onClick}
-		>
-			{iconButtonType === IconButtonType.Link && <FontAwesomeIcon icon={faLink} />}
-			{iconButtonType === IconButtonType.YouTube && (
-				<FontAwesomeIcon icon={faYoutube} />
-			)}
-			{iconButtonType === IconButtonType.Default && (
-				<FontAwesomeIcon icon={faEarlybirds} />
-			)}
-			{iconButtonType === IconButtonType.Exercise && (
-				<FontAwesomeIcon icon={faEdit} />
-			)}
-		</IconButtonContainer>
-	)
-}
+	color = 'var(--black)',
+	backgroundColor = 'transparent',
+	icon = faTimes,
+	className = '',
+}: IIconButtonProps) => (
+	<IconButtonContainer
+		onClick={onClick}
+		color={color}
+		backgroundColor={backgroundColor}
+		variants={closeButtonVariants}
+		whileHover='hover'
+		whileTap='pressed'
+		className={className}
+	>
+		<FontAwesomeIcon icon={icon} />
+	</IconButtonContainer>
+)

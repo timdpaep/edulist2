@@ -2,7 +2,7 @@
  * A File With Breakpoints for Responsive Behaviour
  */
 
-const size = {
+export const deviceSizes = {
 	mobile: '576px',
 	tablet: '768px',
 	laptop: '1024px',
@@ -10,8 +10,8 @@ const size = {
 }
 
 export default {
-	mobile: `(min-width: ${size.mobile})`,
-	tablet: `(min-width: ${size.tablet})`,
-	laptop: `(min-width: ${size.laptop})`,
-	desktop: `(min-width: ${size.desktop})`,
+	mobile: `(min-width: ${deviceSizes.mobile})`,
+	tablet: `(min-width: ${deviceSizes.tablet})`,
+	laptop: `(min-width: ${deviceSizes.laptop})`,
+	desktop: `(min-width: ${deviceSizes.desktop})`,
 }

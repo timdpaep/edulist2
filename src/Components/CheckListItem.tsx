@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { CheckBox, IconButton } from '.'
+import { CheckBox, CheckListIconButton } from '.'
 import { ICheckListItem } from '../interfaces'
 import { IconButtonType } from '../enums'
 import { useEduSideBar } from '../Hooks'
@@ -59,7 +59,7 @@ export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
 				/>
 				<div>{checklistItem.description}</div>
 			</CheckListCheckBoxContainer>
-			<IconButton
+			<CheckListIconButton
 				onClick={() => {
 					action(checklistItem)
 				}}

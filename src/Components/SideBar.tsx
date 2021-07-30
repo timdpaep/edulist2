@@ -1,8 +1,14 @@
 import React, { useState, useEffect, MouseEvent } from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { CloseButton, Loader } from '.'
-import device from '../device'
+import { motion, useAnimation } from 'framer-motion'
+import {
+	faChevronLeft,
+	faChevronRight,
+	faTimes,
+} from '@fortawesome/free-solid-svg-icons'
+import { useMediaQuery } from 'Hooks'
+import { IconButton, Loader } from '.'
+import device, { deviceSizes } from '../device'
 
 /**
  * Interfaces
@@ -10,6 +16,7 @@ import device from '../device'
 
 interface ISideBarContainerProps {
 	open?: boolean
+	fullScreen: boolean
 }
 
 interface ISideBarProps {
@@ -17,32 +24,60 @@ interface ISideBarProps {
 	loading?: boolean
 	children?: React.ReactNode
 	onCloseClicked?: (event: MouseEvent<HTMLButtonElement>) => void
+	onClosed?: () => void
+	animationDuration: number
 }
 
 /**
  * Framer Motion
  */
 
-const sideBarVariants = {
+const sideBarVariants = (animationDuration: number) => ({
 	open: {
 		right: 0,
+		width: '50vw',
 		transition: {
-			duration: 0.5,
+			duration: animationDuration,
 			ease: 'easeIn',
 		},
 	},
-	hidden: {
-		right: '-50vw',
+	fullScreen: {
+		width: '100vw',
 		transition: {
-			duration: 0.5,
+			duration: animationDuration,
 			ease: 'easeOut',
 		},
 	},
-}
+	hidden: {
+		width: '50vw',
+		right: '-50vw',
+		transition: {
+			duration: animationDuration,
+			ease: 'easeOut',
+		},
+	},
+})
 
 /**
  * Styled components
  */
+
+const SideBarHeader = styled.header`
+	background-color: var(--white);
+	height: 80px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 30px;
+	position: sticky;
+	top: 0;
+	left: 0;
+`
+
+const SideBarContent = styled.div`
+	padding: 0 30px 30px 30px;
+`
 
 const SideBarContainer = styled(motion.aside)<ISideBarContainerProps>`
 	position: fixed;
@@ -50,53 +85,100 @@ const SideBarContainer = styled(motion.aside)<ISideBarContainerProps>`
 	height: 100vh;
 	top: 0;
 	right: ${props => (props.open ? '0' : '-100vw')};
-	padding: 30px;
 	background-color: var(--white);
 	box-shadow: var(--level-3);
 	z-index: 99;
 	overflow: scroll;
 
-	@media ${device.tablet} {
-		width: 50vw;
-		right: ${props => (props.open ? '0' : '-50vw')};
+	.chevronLeftRight {
+		display: none;
+	}
+
+	@media ${device.mobile} {
+		.chevronLeftRight {
+			display: block;
+		}
 	}
 `
 
 export const SideBar = ({
 	open = false,
 	loading = false,
+	animationDuration = 0.3,
 	children,
 	onCloseClicked,
+	onClosed,
 }: ISideBarProps) => {
+	const sideBarControls = useAnimation()
+	const isSmall = useMediaQuery(`(max-width: ${deviceSizes.mobile})`)
 	const [isOpen, setIsOpen] = useState(open)
 	const [isLoading, setIsLoading] = useState(loading)
+	const [isFullScreen, setIsFullScreen] = useState(false)
 
 	useEffect(() => {
 		setIsOpen(open)
+		sideBarControls.start(open ? 'open' : 'hidden')
 	}, [open])
+
 	useEffect(() => {
 		setIsLoading(loading)
 	}, [loading])
 
+	useEffect(() => {
+		if (isOpen && isSmall) sideBarControls.start('fullScreen')
+		if (!isSmall && isOpen) {
+			if (isFullScreen) sideBarControls.start('fullScreen')
+			else sideBarControls.start('open')
+		}
+	}, [isSmall])
+
 	return (
 		<SideBarContainer
-			variants={sideBarVariants}
-			initial='hidden'
-			animate={isOpen ? 'open' : 'hidden'}
+			fullScreen={isFullScreen}
+			open={isOpen}
+			variants={
+				isSmall
+					? {
+							...sideBarVariants(animationDuration),
+							open: {
+								...sideBarVariants(animationDuration).open,
+								width: '100vw',
+							},
+					  }
+					: sideBarVariants(animationDuration)
+			}
+			initial={isOpen ? 'open' : 'hidden'}
+			animate={sideBarControls}
 		>
-			{children}
+			<SideBarHeader>
+				<div>
+					<IconButton
+						className='chevronLeftRight'
+						icon={isFullScreen ? faChevronRight : faChevronLeft}
+						onClick={() => {
+							setIsFullScreen(!isFullScreen)
+							if (!isFullScreen) sideBarControls.start('fullScreen')
+							if (isFullScreen) sideBarControls.start('open')
+						}}
+					/>
+				</div>
+				<div>
+					<IconButton
+						icon={faTimes}
+						onClick={e => {
+							setIsFullScreen(false)
+							setIsOpen(false)
+							setIsLoading(false)
+							if (onCloseClicked) onCloseClicked(e)
+							setTimeout(() => {
+								if (onClosed) onClosed()
+							}, animationDuration * 1000)
+						}}
+					/>
+				</div>
+			</SideBarHeader>
 			{isLoading && <Loader />}
-			<CloseButton
-				onClick={e => {
-					if (onCloseClicked) {
-						setIsLoading(false)
-						onCloseClicked(e)
-					} else setIsOpen(false)
-				}}
-				right={30}
-				top={30}
-				color='var(--black)'
-			/>
+			<SideBarContent>{children}</SideBarContent>
 		</SideBarContainer>
 	)
 }

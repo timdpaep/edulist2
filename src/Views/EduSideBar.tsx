@@ -33,16 +33,18 @@ export default ({
 	return (
 		<SideBar
 			open={open}
+			animationDuration={0.3}
 			loading={isLoading}
 			onCloseClicked={() => dispatch(setSideBar({ open: false, value, type }))}
+			onClosed={() => dispatch(setSideBar({ open: false, value: '' }))}
 		>
-			{currentType === 'youtube' && open && (
+			{currentType === 'youtube' && (
 				<YouTube
 					youtubeId={value}
 					loadingChanged={loading => setIsLoading(loading)}
 				/>
 			)}
-			{currentType === 'exercise' && open && (
+			{currentType === 'exercise' && (
 				<Exercise
 					exerciseId={value}
 					loadingChanged={loading => setIsLoading(loading)}

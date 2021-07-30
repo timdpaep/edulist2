@@ -38,7 +38,6 @@ export default () => {
 							checkListSection={checkListSection}
 						/>
 					))}
-				)
 			</Main>
 			<Footer />
 		</>
