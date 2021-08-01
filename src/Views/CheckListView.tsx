@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { Header, Footer, Main } from '../Layout'
 import { CHECKLIST } from '../graphql/queries'
 import { ICheckList } from '../interfaces'
-import { CheckListSection, Loader } from '../Components'
+import { CheckListSection, Loader, CheckListHeaderButtons } from '../Components'
 
 interface ICheckListRouteParams {
 	slug: string
@@ -15,7 +15,8 @@ interface ICheckListData {
 }
 
 export default () => {
-	const { checklistId } = useParams<ICheckListRouteParams>()
+	const { checklistId, slug } = useParams<ICheckListRouteParams>()
+	const history = useHistory()
 	const { loading, error, data } = useQuery<ICheckListData>(CHECKLIST, {
 		variables: { id: checklistId },
 	})
@@ -27,7 +28,14 @@ export default () => {
 
 	return (
 		<>
-			<Header title={data.checklist.title} />
+			<Header
+				title={data.checklist.title}
+				buttons={
+					<CheckListHeaderButtons
+						onOverviewClicked={() => history.push(`/${slug}`)}
+					/>
+				}
+			/>
 			<Main>
 				{data &&
 					data.checklist &&

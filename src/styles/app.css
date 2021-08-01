@@ -106,12 +106,9 @@ button {
   border-radius: var(--buttonBorderRadius);
   padding: 7px;
   cursor: pointer;
-  box-shadow: var(--level-2);
-  text-transform: uppercase;
 }
 
 button[disabled] {
-  opacity: 0.4;
   cursor: initial;
 }
 

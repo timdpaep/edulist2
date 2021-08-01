@@ -16,6 +16,7 @@ const COURSE = gql`
 			id
 			title
 			slug
+			canvasUrl
 			courseSections {
 				id
 				title
@@ -40,7 +41,16 @@ const CHECKLIST = gql`
 					id
 					type
 					description
-					value
+					url
+					youTube {
+						id
+					}
+					exercise {
+						id
+					}
+					asset {
+						id
+					}
 				}
 			}
 		}
@@ -63,4 +73,15 @@ const YOUTUBE = gql`
 	}
 `
 
-export { COURSES, COURSE, CHECKLIST, EXERCISE, YOUTUBE }
+const GET_ASSET = gql`
+	query GetAsset($id: ID!) {
+		asset(where: { id: $id }) {
+			title
+			url
+			mimeType
+			fileName
+		}
+	}
+`
+
+export { COURSES, COURSE, CHECKLIST, EXERCISE, YOUTUBE, GET_ASSET }

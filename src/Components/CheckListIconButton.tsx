@@ -1,9 +1,7 @@
-import React, { MouseEvent } from 'react'
+import { useState, MouseEvent, useEffect } from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faYoutube, faEarlybirds } from '@fortawesome/free-brands-svg-icons'
-import { faLink, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { motion, useAnimation } from 'framer-motion'
+import { ButtonIcon } from '.'
 import { IconButtonType } from '../enums'
 
 /**
@@ -13,6 +11,7 @@ import { IconButtonType } from '../enums'
 interface IIconButtonProps {
 	iconButtonType?: IconButtonType
 	onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+	disabled?: boolean
 }
 
 interface IIconButtonContainerProps {
@@ -24,6 +23,10 @@ interface IIconButtonContainerProps {
  */
 
 const iconButtonVariants = {
+	default: {
+		opacity: 1,
+		scale: 1,
+	},
 	hover: {
 		opacity: 0.5,
 		transition: {
@@ -36,6 +39,13 @@ const iconButtonVariants = {
 			duration: 0.1,
 		},
 	},
+	disabled: {
+		scale: 1,
+		opacity: 0.2,
+		transition: {
+			duration: 0.3,
+		},
+	},
 }
 
 /**
@@ -44,35 +54,50 @@ const iconButtonVariants = {
 
 const IconButtonContainer = styled(motion.button)<IIconButtonContainerProps>`
 	border-radius: 50%;
-	width: 2rem;
-	height: 2rem;
+	width: calc(2 * var(--checklist-item-size));
+	height: calc(2 * var(--checklist-item-size));
 	transform-origin: center;
 	background-color: var(--ib-${props => props.iconButtonType}-background-color);
+	box-shadow: var(--level-2);
 `
 
 export const CheckListIconButton = ({
 	iconButtonType = IconButtonType.Default,
 	onClick,
+	disabled = false,
 }: IIconButtonProps) => {
+	const checkListIconButtonControls = useAnimation()
+	const [isDisabled, setIsDisabled] = useState(disabled)
+
+	useEffect(() => {
+		if (disabled) checkListIconButtonControls.start('disabled')
+		else checkListIconButtonControls.start('default')
+		setIsDisabled(disabled)
+	}, [disabled])
+
 	if (iconButtonType === IconButtonType.None) return null
+
 	return (
 		<IconButtonContainer
 			iconButtonType={iconButtonType}
 			variants={iconButtonVariants}
-			whileTap='pressed'
-			whileHover='hover'
+			animate={checkListIconButtonControls}
 			onClick={onClick}
+			onHoverStart={() => {
+				if (!isDisabled) checkListIconButtonControls.start('hover')
+			}}
+			onHoverEnd={() => {
+				if (!isDisabled) checkListIconButtonControls.start('default')
+			}}
+			onTapStart={() => {
+				if (!isDisabled) checkListIconButtonControls.start('pressed')
+			}}
+			onTap={() => {
+				if (!isDisabled) checkListIconButtonControls.start('default')
+			}}
+			disabled={isDisabled}
 		>
-			{iconButtonType === IconButtonType.Link && <FontAwesomeIcon icon={faLink} />}
-			{iconButtonType === IconButtonType.YouTube && (
-				<FontAwesomeIcon icon={faYoutube} />
-			)}
-			{iconButtonType === IconButtonType.Default && (
-				<FontAwesomeIcon icon={faEarlybirds} />
-			)}
-			{iconButtonType === IconButtonType.Exercise && (
-				<FontAwesomeIcon icon={faEdit} />
-			)}
+			<ButtonIcon iconButtonType={iconButtonType} />
 		</IconButtonContainer>
 	)
 }

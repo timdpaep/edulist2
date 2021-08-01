@@ -6,6 +6,7 @@ interface CheckBoxProps {
 	checkBoxWidth: string
 	marginRight?: string
 	strokeWidth?: number
+	checkedChanged?: (checked: boolean) => void
 }
 
 /**
@@ -59,6 +60,7 @@ export const CheckBox = ({
 	checkBoxWidth = '100px',
 	marginRight = '10px',
 	strokeWidth = 6,
+	checkedChanged,
 }: CheckBoxProps) => {
 	const [isChecked, setIsChecked] = useState<boolean>(false)
 	return (
@@ -74,7 +76,10 @@ export const CheckBox = ({
 				whileHover='hover'
 				whileTap='pressed'
 				viewBox='0 0 100 100'
-				onClick={() => setIsChecked(!isChecked)}
+				onClick={() => {
+					if (checkedChanged) checkedChanged(!isChecked)
+					setIsChecked(!isChecked)
+				}}
 			>
 				<motion.rect
 					fillRule='nonzero'

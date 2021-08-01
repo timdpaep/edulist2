@@ -14,13 +14,19 @@
 
   /* Color Intentions */
   --background-color: var(--white);
+  --background-color-section-even: var(--lightGrey);
   --text-color: var(--black);
   --section-title-color: var(--orange);
   --checklist-checkbox-color: var(--green);
+
+  /* Color Icon Button Intention */
   --ib-default-background-color: var(--orange);
   --ib-youtube-background-color: #FF0000;
   --ib-link-background-color: var(--blue);
   --ib-exercise-background-color: var(--orange);
+  --ib-github-background-color: var(--black);
+  --ib-pdf-background-color: #FF2800;
+  --ib-asset-background-color: var(--purple);
 
   /* Loader */
   --loader-color: var(--orange);
@@ -39,6 +45,7 @@
   /* Typography */
   --font-weight: 400;
   --line-height: 1.75;
+  --checklist-item-size: 1.2rem;
   --h1: 3.052rem;
   --h2: 2.441rem;
   --h3: 1.953rem;
@@ -47,5 +54,5 @@
   --small: 0.8rem;
 
   /* Layout */
-  --container-gap: 30px;
+  --container-gap: 50px;
 }

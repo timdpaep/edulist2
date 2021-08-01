@@ -1,8 +1,15 @@
+import { useState } from 'react'
 import styled from 'styled-components'
-import { CheckBox, CheckListIconButton } from '.'
+import { motion } from 'framer-motion'
+import { CheckBox } from '.'
+import {
+	CheckListAssetButton,
+	CheckListPdfButton,
+	CheckListLinkButton,
+	CheckListSideBarButton,
+} from './CheckListButtons'
 import { ICheckListItem } from '../interfaces'
 import { IconButtonType } from '../enums'
-import { useEduSideBar } from '../Hooks'
 
 /**
  * Types
@@ -29,24 +36,28 @@ const CheckListCheckBoxContainer = styled.div`
 	align-items: center;
 `
 
-export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
-	const { openSideBar } = useEduSideBar()
+/**
+ * Framer Motion
+ */
 
-	const action = ({ type, value }: ICheckListItem) => {
-		switch (type) {
-			case 'link':
-				window.open(value, '_blank')?.focus()
-				break
-			case 'youtube':
-				openSideBar('youtube', value)
-				break
-			case 'exercise':
-				openSideBar('exercise', value)
-				break
-			default:
-				break
-		}
-	}
+const checkedVariants = {
+	checked: {
+		opacity: 0.4,
+		transition: {
+			duration: 0.2,
+		},
+	},
+	unchecked: {
+		opacity: 1,
+		transition: {
+			duration: 0.2,
+		},
+	},
+}
+
+export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
+	const iconButtonType = checklistItem.type as IconButtonType
+	const [isChecked, setIsChecked] = useState(false)
 
 	return (
 		<CheckListItemContainer id={checklistItem.id}>
@@ -56,15 +67,66 @@ export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
 					strokeColor='var(--checklist-checkbox-color)'
 					strokeWidth={7}
 					marginRight='1.5em'
+					checkedChanged={checked => setIsChecked(checked)}
 				/>
-				<div>{checklistItem.description}</div>
+				<motion.div
+					variants={checkedVariants}
+					animate={isChecked ? 'checked' : 'unchecked'}
+					style={{
+						textDecoration: isChecked ? 'line-through' : 'none',
+					}}
+				>
+					{checklistItem.description}
+				</motion.div>
 			</CheckListCheckBoxContainer>
-			<CheckListIconButton
-				onClick={() => {
-					action(checklistItem)
-				}}
-				iconButtonType={checklistItem.type as IconButtonType}
-			/>
+			{(() => {
+				if (iconButtonType === IconButtonType.Asset) {
+					return (
+						<CheckListAssetButton
+							disabled={isChecked}
+							assetId={checklistItem.asset.id}
+						/>
+					)
+				}
+				if (iconButtonType === IconButtonType.Pdf) {
+					return (
+						<CheckListPdfButton
+							disabled={isChecked}
+							assetId={checklistItem.asset.id}
+						/>
+					)
+				}
+				if (
+					iconButtonType === IconButtonType.Link ||
+					iconButtonType === IconButtonType.GitHub
+				) {
+					return (
+						<CheckListLinkButton
+							iconButtonType={iconButtonType}
+							url={checklistItem.url}
+							target='_blank'
+							disabled={isChecked}
+						/>
+					)
+				}
+				if (
+					iconButtonType === IconButtonType.YouTube ||
+					iconButtonType === IconButtonType.Exercise
+				) {
+					return (
+						<CheckListSideBarButton
+							iconButtonType={iconButtonType}
+							value={
+								iconButtonType === IconButtonType.YouTube
+									? checklistItem.youTube.id
+									: checklistItem.exercise.id
+							}
+							disabled={isChecked}
+						/>
+					)
+				}
+				return null
+			})()}
 		</CheckListItemContainer>
 	)
 }
