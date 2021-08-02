@@ -46,6 +46,7 @@
   --font-weight: 400;
   --line-height: 1.75;
   --checklist-item-size: 1.2rem;
+  --checklist-item-size-mobile: 1.1rem;
   --h1: 3.052rem;
   --h2: 2.441rem;
   --h3: 1.953rem;
@@ -55,4 +56,5 @@
 
   /* Layout */
   --container-gap: 50px;
+  --container-gap-mobile: 30px;
 }

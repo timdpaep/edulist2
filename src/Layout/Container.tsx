@@ -3,10 +3,11 @@ import device from '../device'
 
 export const Container = styled.div`
 	width: 100%;
-	padding: 0 var(--container-gap);
+	padding: 0 var(--container-gap-mobile);
 	margin: 0 auto;
 
 	@media ${device.mobile} {
+		padding: 0 var(--container-gap);
 		max-width: calc(100% - 20px);
 	}
 	@media ${device.tablet} {

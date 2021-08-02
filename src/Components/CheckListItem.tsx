@@ -10,6 +10,7 @@ import {
 import { ICheckListItem } from '../interfaces'
 import { IconButtonType } from '../enums'
 import { useCheckListItem } from '../Hooks'
+import device from '../device'
 
 /**
  * Types
@@ -25,16 +26,21 @@ interface ICheckListItemProps {
  */
 
 const CheckListItemContainer = styled.li`
-	line-height: 0;
+	line-height: normal;
 	margin-bottom: 1.2rem;
-	display: flex;
+	display: grid;
+	grid-template-columns: calc(2 * var(--checklist-item-size-mobile)) 1fr calc(
+			2 * var(--checklist-item-size-mobile)
+		);
+	column-gap: 1.5rem;
 	align-items: center;
 	justify-content: space-between;
-`
 
-const CheckListCheckBoxContainer = styled.div`
-	display: flex;
-	align-items: center;
+	@media ${device.mobile} {
+		grid-template-columns: calc(2 * var(--checklist-item-size)) 1fr calc(
+				2 * var(--checklist-item-size)
+			);
+	}
 `
 
 /**
@@ -68,25 +74,28 @@ export const CheckListItem = ({
 
 	return (
 		<CheckListItemContainer id={checkListItem.id}>
-			<CheckListCheckBoxContainer>
-				<CheckBox
-					checkBoxWidth='36px'
-					strokeColor='var(--checklist-checkbox-color)'
-					strokeWidth={7}
-					marginRight='1.5em'
-					checked={isChecked}
-					checkedChanged={changeChecked}
-				/>
-				<motion.div
-					variants={checkedVariants}
-					animate={isChecked ? 'checked' : 'unchecked'}
-					style={{
-						textDecoration: isChecked ? 'line-through' : 'none',
-					}}
-				>
-					{checkListItem.description}
-				</motion.div>
-			</CheckListCheckBoxContainer>
+			<CheckBox
+				checkBoxWidth={`
+					calc(2 * var(--checklist-item-size-mobile))
+					@media ${device.mobile} {
+						calc(2 * var(--checklist-item-size))
+					}
+				`}
+				strokeColor='var(--checklist-checkbox-color)'
+				strokeWidth={7}
+				checked={isChecked}
+				checkedChanged={changeChecked}
+			/>
+			<motion.div
+				variants={checkedVariants}
+				animate={isChecked ? 'checked' : 'unchecked'}
+				style={{
+					textDecoration: isChecked ? 'line-through' : 'none',
+				}}
+			>
+				{checkListItem.description}
+			</motion.div>
+
 			{(() => {
 				if (iconButtonType === IconButtonType.Asset) {
 					return (

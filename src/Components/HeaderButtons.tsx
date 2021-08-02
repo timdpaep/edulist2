@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const HeaderButtonsContainer = styled.div`
 	display: flex;
+	justify-content: flex-end;
 	button + button {
 		margin-left: 10px;
 	}

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import { ButtonIcon } from '.'
 import { IconButtonType } from '../enums'
+import device from '../device'
 
 /**
  * Types
@@ -54,11 +55,18 @@ const iconButtonVariants = {
 
 const IconButtonContainer = styled(motion.button)<IIconButtonContainerProps>`
 	border-radius: 50%;
-	width: calc(2 * var(--checklist-item-size));
-	height: calc(2 * var(--checklist-item-size));
+	width: calc(2 * var(--checklist-item-size-mobile));
+	height: calc(2 * var(--checklist-item-size-mobile));
 	transform-origin: center;
 	background-color: var(--ib-${props => props.iconButtonType}-background-color);
 	box-shadow: var(--level-2);
+	font-size: var(--checklist-item-size-mobile);
+
+	@media ${device.mobile} {
+		width: calc(2 * var(--checklist-item-size));
+		height: calc(2 * var(--checklist-item-size));
+		font-size: var(--checklist-item-size);
+	}
 `
 
 export const CheckListIconButton = ({

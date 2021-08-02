@@ -11,15 +11,16 @@ interface IHeaderProps {
 const HeaderContainer = styled(ContainerFluid)`
   width: 100%;
  	margin: 0 auto;
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 80% 20%;
 	align-items: center;
+	justify-content: space-between;
 	padding-top: 30px;
   padding-bottom: 30px;
-	font-size: 1em;
+	font-size: var(--checklist-item-size-mobile);
 
   h1 {
-    font-size: 1rem;
+    font-size: var(--checklist-item-size-mobile);
     @media ${device.mobile} { font-size: var(--h4); }
     margin: 0;
   }
