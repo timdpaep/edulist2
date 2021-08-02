@@ -23,6 +23,7 @@ export default () => {
 				title={data.course.title}
 				buttons={
 					<CourseHeaderButtons
+						showCanvas={data?.course?.canvasUrl}
 						onCanvasClicked={() => window.open(data?.course?.canvasUrl, '_blank')}
 					/>
 				}

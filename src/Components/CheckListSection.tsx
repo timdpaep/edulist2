@@ -5,6 +5,7 @@ import { CheckListItem } from '.'
 
 interface ICheckListSectionProps {
 	checkListSection: ICheckListSection
+	checkListId: string
 }
 
 const SectionCheckList = styled.ul`
@@ -15,13 +16,18 @@ const SectionCheckList = styled.ul`
 
 export const CheckListSection = ({
 	checkListSection,
+	checkListId,
 }: ICheckListSectionProps) => (
 	<SectionContainer>
 		<h2>{checkListSection.title}</h2>
 		<SectionCheckList>
 			{checkListSection.checklistItems &&
 				checkListSection.checklistItems.map(checklistItem => (
-					<CheckListItem key={checklistItem.id} checklistItem={checklistItem} />
+					<CheckListItem
+						key={checklistItem.id}
+						checkListItem={checklistItem}
+						checkListId={checkListId}
+					/>
 				))}
 		</SectionCheckList>
 	</SectionContainer>

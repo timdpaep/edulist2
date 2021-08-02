@@ -83,3 +83,13 @@ export interface IAsset {
 	mimeType: string
 	fileName: string
 }
+
+/**
+ * Database
+ */
+
+export interface IChecklistCheck {
+	id?: number
+	checklistId?: string
+	checklistItemId?: string
+}

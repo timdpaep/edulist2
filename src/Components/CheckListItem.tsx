@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { CheckBox } from '.'
@@ -10,13 +9,15 @@ import {
 } from './CheckListButtons'
 import { ICheckListItem } from '../interfaces'
 import { IconButtonType } from '../enums'
+import { useCheckListItem } from '../Hooks'
 
 /**
  * Types
  */
 
 interface ICheckListItemProps {
-	checklistItem: ICheckListItem
+	checkListItem: ICheckListItem
+	checkListId: string
 }
 
 /**
@@ -55,19 +56,26 @@ const checkedVariants = {
 	},
 }
 
-export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
-	const iconButtonType = checklistItem.type as IconButtonType
-	const [isChecked, setIsChecked] = useState(false)
+export const CheckListItem = ({
+	checkListItem,
+	checkListId,
+}: ICheckListItemProps) => {
+	const { isChecked, changeChecked } = useCheckListItem({
+		checkListId,
+		checkListItem,
+	})
+	const iconButtonType = checkListItem.type as IconButtonType
 
 	return (
-		<CheckListItemContainer id={checklistItem.id}>
+		<CheckListItemContainer id={checkListItem.id}>
 			<CheckListCheckBoxContainer>
 				<CheckBox
 					checkBoxWidth='36px'
 					strokeColor='var(--checklist-checkbox-color)'
 					strokeWidth={7}
 					marginRight='1.5em'
-					checkedChanged={checked => setIsChecked(checked)}
+					checked={isChecked}
+					checkedChanged={changeChecked}
 				/>
 				<motion.div
 					variants={checkedVariants}
@@ -76,7 +84,7 @@ export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
 						textDecoration: isChecked ? 'line-through' : 'none',
 					}}
 				>
-					{checklistItem.description}
+					{checkListItem.description}
 				</motion.div>
 			</CheckListCheckBoxContainer>
 			{(() => {
@@ -84,7 +92,7 @@ export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
 					return (
 						<CheckListAssetButton
 							disabled={isChecked}
-							assetId={checklistItem.asset.id}
+							assetId={checkListItem.asset.id}
 						/>
 					)
 				}
@@ -92,7 +100,7 @@ export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
 					return (
 						<CheckListPdfButton
 							disabled={isChecked}
-							assetId={checklistItem.asset.id}
+							assetId={checkListItem.asset.id}
 						/>
 					)
 				}
@@ -103,7 +111,7 @@ export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
 					return (
 						<CheckListLinkButton
 							iconButtonType={iconButtonType}
-							url={checklistItem.url}
+							url={checkListItem.url}
 							target='_blank'
 							disabled={isChecked}
 						/>
@@ -118,8 +126,8 @@ export const CheckListItem = ({ checklistItem }: ICheckListItemProps) => {
 							iconButtonType={iconButtonType}
 							value={
 								iconButtonType === IconButtonType.YouTube
-									? checklistItem.youTube.id
-									: checklistItem.exercise.id
+									? checkListItem.youTube.id
+									: checkListItem.exercise.id
 							}
 							disabled={isChecked}
 						/>

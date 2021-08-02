@@ -43,6 +43,7 @@ export default () => {
 					data.checklist.checklistSections.map(checkListSection => (
 						<CheckListSection
 							key={checkListSection.id}
+							checkListId={data.checklist.id}
 							checkListSection={checkListSection}
 						/>
 					))}

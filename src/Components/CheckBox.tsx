@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 interface CheckBoxProps {
@@ -6,6 +6,7 @@ interface CheckBoxProps {
 	checkBoxWidth: string
 	marginRight?: string
 	strokeWidth?: number
+	checked?: boolean
 	checkedChanged?: (checked: boolean) => void
 }
 
@@ -60,9 +61,15 @@ export const CheckBox = ({
 	checkBoxWidth = '100px',
 	marginRight = '10px',
 	strokeWidth = 6,
+	checked = false,
 	checkedChanged,
 }: CheckBoxProps) => {
-	const [isChecked, setIsChecked] = useState<boolean>(false)
+	const [isChecked, setIsChecked] = useState<boolean>(checked)
+
+	useEffect(() => {
+		setIsChecked(checked)
+	}, [checked])
+
 	return (
 		<div
 			style={{
