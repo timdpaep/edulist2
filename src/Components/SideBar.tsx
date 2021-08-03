@@ -25,6 +25,7 @@ interface ISideBarProps {
 	children?: React.ReactNode
 	onCloseClicked?: (event: MouseEvent<HTMLButtonElement>) => void
 	onClosed?: () => void
+	onAnimationEnded?: (isOpen: boolean) => void
 	animationDuration: number
 }
 
@@ -64,6 +65,7 @@ const sideBarVariants = (animationDuration: number) => ({
 
 const SideBarHeader = styled.header`
 	background-color: var(--white);
+	z-index: 999;
 	height: 80px;
 	width: 100%;
 	display: flex;
@@ -108,6 +110,7 @@ export const SideBar = ({
 	children,
 	onCloseClicked,
 	onClosed,
+	onAnimationEnded,
 }: ISideBarProps) => {
 	const sideBarControls = useAnimation()
 	const isSmall = useMediaQuery(`(max-width: ${deviceSizes.mobile})`)
@@ -117,7 +120,9 @@ export const SideBar = ({
 
 	useEffect(() => {
 		setIsOpen(open)
-		sideBarControls.start(open ? 'open' : 'hidden')
+		sideBarControls.start(open ? 'open' : 'hidden').then(() => {
+			if (onAnimationEnded) onAnimationEnded(open)
+		})
 	}, [open])
 
 	useEffect(() => {

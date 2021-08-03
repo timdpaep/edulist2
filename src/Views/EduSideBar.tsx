@@ -22,6 +22,7 @@ export default ({
 	const dispatch = useAppDispatch()
 	const [currentType, setCurrentType] = useState('none')
 	const [isLoading, setIsLoading] = useState(false)
+	const [sidebarOpened, setSidebarOpened] = useState(false)
 
 	/**
 	 * Sets the current type and changes the state
@@ -37,14 +38,15 @@ export default ({
 			loading={isLoading}
 			onCloseClicked={() => dispatch(setSideBar({ open: false, value, type }))}
 			onClosed={() => dispatch(setSideBar({ open: false, value: '' }))}
+			onAnimationEnded={isOpen => setSidebarOpened(isOpen)}
 		>
-			{currentType === 'youtube' && (
+			{currentType === 'youtube' && sidebarOpened && (
 				<YouTube
 					youtubeId={value}
 					loadingChanged={loading => setIsLoading(loading)}
 				/>
 			)}
-			{currentType === 'exercise' && (
+			{currentType === 'exercise' && sidebarOpened && (
 				<Exercise
 					exerciseId={value}
 					loadingChanged={loading => setIsLoading(loading)}

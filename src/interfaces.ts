@@ -67,10 +67,13 @@ export interface IYouTube {
 	videoId: string
 }
 
-export interface IYouTubeSnippet {
+export interface IYouTubeVideoDetails {
+	id: string
 	description: string
 	title: string
 	tags: string[]
+	duration: string
+	readableDuration: string
 }
 
 /**

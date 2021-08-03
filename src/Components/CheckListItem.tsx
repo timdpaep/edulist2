@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { CheckBox } from '.'
+import { CheckBox, CheckListItemDescription } from '.'
 import {
 	CheckListAssetButton,
 	CheckListPdfButton,
@@ -43,25 +42,6 @@ const CheckListItemContainer = styled.li`
 	}
 `
 
-/**
- * Framer Motion
- */
-
-const checkedVariants = {
-	checked: {
-		opacity: 0.4,
-		transition: {
-			duration: 0.2,
-		},
-	},
-	unchecked: {
-		opacity: 1,
-		transition: {
-			duration: 0.2,
-		},
-	},
-}
-
 export const CheckListItem = ({
 	checkListItem,
 	checkListId,
@@ -86,15 +66,11 @@ export const CheckListItem = ({
 				checked={isChecked}
 				checkedChanged={changeChecked}
 			/>
-			<motion.div
-				variants={checkedVariants}
-				animate={isChecked ? 'checked' : 'unchecked'}
-				style={{
-					textDecoration: isChecked ? 'line-through' : 'none',
-				}}
-			>
-				{checkListItem.description}
-			</motion.div>
+
+			<CheckListItemDescription
+				checkListItem={checkListItem}
+				checked={isChecked}
+			/>
 
 			{(() => {
 				if (iconButtonType === IconButtonType.Asset) {

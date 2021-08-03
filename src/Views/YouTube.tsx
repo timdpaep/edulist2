@@ -1,11 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
-import { useQuery } from '@apollo/client'
-// import YouTubeVideo from 'react-youtube'
 import ReactPlayer from 'react-player/lazy'
-import { IYouTube, IYouTubeSnippet } from '../interfaces'
-import { YOUTUBE } from '../graphql/queries'
-import { getVideoSnippet } from '../library/youtube'
+import { useYouTube } from 'Hooks'
 import { Loader } from '../Components'
 
 /**
@@ -15,10 +11,6 @@ import { Loader } from '../Components'
 interface IYouTubeProps {
 	youtubeId: string
 	loadingChanged: (loading: boolean) => void
-}
-
-interface IYouTubeData {
-	youTube: IYouTube
 }
 
 /**
@@ -32,39 +24,22 @@ const YouTubeContainer = styled.div`
 `
 
 export default ({ youtubeId, loadingChanged }: IYouTubeProps) => {
-	const { loading, error, data } = useQuery<IYouTubeData>(YOUTUBE, {
-		variables: { id: youtubeId },
-	})
-	const [youTubeSnippet, setYouTubeSnippet] = useState<IYouTubeSnippet>({
-		title: '',
-		description: '',
-		tags: [],
-	})
+	const { loading, youTubeVideoDetails } = useYouTube(youtubeId)
 
-	// when loading changed
-	useEffect(() => loadingChanged(loading), [loadingChanged, loading])
-
-	// when mounting the component
 	useEffect(() => {
-		if (data && data.youTube) {
-			getVideoSnippet(data.youTube.videoId).then((videoSnippet: any) =>
-				setYouTubeSnippet(videoSnippet)
-			)
-		}
-	}, [data])
+		loadingChanged(loading)
+	}, [loading])
 
-	// return nothing when we are loading or having an error
+	// return loader while loading
 	if (loading) return <Loader />
 
-	if (error || !data) return null
-
-	// destructure youtube
-	const { youTube } = data
+	// if nothing, return nothing
+	if (!youTubeVideoDetails) return null
 
 	return (
 		<YouTubeContainer>
 			<ReactPlayer
-				url={`https://www.youtube.com/watch?v=${youTube.videoId}`}
+				url={`https://www.youtube.com/watch?v=${youTubeVideoDetails.id}`}
 				style={{
 					borderRadius: 5,
 				}}
@@ -83,8 +58,8 @@ export default ({ youtubeId, loadingChanged }: IYouTubeProps) => {
 					},
 				}}
 			/>
-			<p>{youTubeSnippet.title}</p>
-			<p>{youTubeSnippet.description}</p>
+			<p>{youTubeVideoDetails.title}</p>
+			<p>{youTubeVideoDetails.description}</p>
 		</YouTubeContainer>
 	)
 }
