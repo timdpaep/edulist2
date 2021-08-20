@@ -2,6 +2,8 @@
  * Used interfaces
  */
 
+import { ReferenceType } from 'enums'
+
 /**
  * Courses
  */
@@ -32,7 +34,10 @@ export interface ICheckListSection {
 export interface ICheckList {
 	id: string
 	title: string
+	slug: string
 	checklistSections: ICheckListSection[]
+	assets: IAsset[]
+	references: IReference[]
 }
 
 export interface ICheckListItem {
@@ -57,6 +62,7 @@ export interface ICheckListItem {
 
 export interface IExercise {
 	description: string
+	assets: IAsset[]
 }
 
 /**
@@ -65,6 +71,8 @@ export interface IExercise {
 
 export interface IYouTube {
 	videoId: string
+	assets: IAsset[]
+	references: IReference[]
 }
 
 export interface IYouTubeVideoDetails {
@@ -85,6 +93,16 @@ export interface IAsset {
 	url: string
 	mimeType: string
 	fileName: string
+}
+
+/**
+ * References
+ */
+
+export interface IReference {
+	title: string
+	referenceType: ReferenceType
+	url: string
 }
 
 /**

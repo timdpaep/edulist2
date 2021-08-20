@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useQuery } from '@apollo/client'
-import { ReactMarkdownCustom } from 'Components'
+import { AssetsSection, ReactMarkdownCustom } from 'Components'
 import { EXERCISE } from '../graphql/queries'
 import { IExercise } from '../interfaces'
 
@@ -31,5 +31,12 @@ export default ({ exerciseId, loadingChanged }: IExerciseProps) => {
 	// destructure exercise
 	const { exercise } = data
 
-	return <ReactMarkdownCustom markdown={exercise.description} />
+	return (
+		<>
+			{exercise.assets && (
+				<AssetsSection style={{ marginBottom: '3rem' }} assets={exercise.assets} />
+			)}
+			<ReactMarkdownCustom markdown={exercise.description} />
+		</>
+	)
 }

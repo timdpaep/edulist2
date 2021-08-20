@@ -11,8 +11,8 @@ const COURSES = gql`
 `
 
 const COURSE = gql`
-	query Course($slug: String!) {
-		course(where: { slug: $slug }) {
+	query Course($courseSlug: String!) {
+		course(where: { slug: $courseSlug }) {
 			id
 			title
 			slug
@@ -23,6 +23,7 @@ const COURSE = gql`
 				checklists {
 					id
 					title
+					slug
 				}
 			}
 		}
@@ -30,10 +31,11 @@ const COURSE = gql`
 `
 
 const CHECKLIST = gql`
-	query CheckList($id: ID!) {
-		checklist(where: { id: $id }) {
+	query CheckList($checklistSlug: String!) {
+		checklist(where: { slug: $checklistSlug }) {
 			id
 			title
+			slug
 			checklistSections {
 				id
 				title
@@ -53,6 +55,17 @@ const CHECKLIST = gql`
 					}
 				}
 			}
+			assets {
+				title
+				url
+				mimeType
+				fileName
+			}
+			references {
+				title
+				referenceType
+				url
+			}
 		}
 	}
 `
@@ -61,6 +74,12 @@ const EXERCISE = gql`
 	query Exercise($id: ID!) {
 		exercise(where: { id: $id }) {
 			description
+			assets {
+				title
+				url
+				mimeType
+				fileName
+			}
 		}
 	}
 `
@@ -69,6 +88,17 @@ const YOUTUBE = gql`
 	query YouTube($id: ID!) {
 		youTube(where: { id: $id }) {
 			videoId
+			assets {
+				title
+				url
+				mimeType
+				fileName
+			}
+			references {
+				title
+				referenceType
+				url
+			}
 		}
 	}
 `

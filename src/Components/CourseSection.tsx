@@ -14,7 +14,12 @@ const CourseSectionList = styled.ul`
 	padding-left: 0;
 	list-style-type: none;
 
+	li > a {
+		color: var(--black);
+	}
+
 	li > a:hover {
+		text-decoration: none;
 		border-bottom: 1px solid var(--black);
 	}
 
@@ -46,7 +51,7 @@ export const CourseSection = ({
 						<li key={checklist.id}>
 							<Link
 								to={{
-									pathname: `/${course.slug}/${checklist.id}`,
+									pathname: `/${course.slug}/${checklist.slug}`,
 									state: { id: courseSection.id },
 								}}
 							>

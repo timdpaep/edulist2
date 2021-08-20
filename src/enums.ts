@@ -12,3 +12,8 @@ export enum IconButtonType {
 	Pdf = 'pdf',
 	YouTube = 'youtube',
 }
+
+export enum ReferenceType {
+	Article = 'article',
+	Podcast = 'podcast',
+}

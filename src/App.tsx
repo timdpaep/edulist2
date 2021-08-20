@@ -13,8 +13,8 @@ const App: React.FC = () => {
 					<Route exact path='/'>
 						<CoursesView />
 					</Route>
-					<Route path='/:slug/:checklistId' component={CheckListView} />
-					<Route path='/:slug' component={CourseView} />
+					<Route path='/:courseSlug/:checklistSlug' component={CheckListView} />
+					<Route path='/:courseSlug' component={CourseView} />
 				</Switch>
 			</Router>
 			<EduSideBar open={sideBar.open} type={sideBar.type} value={sideBar.value} />

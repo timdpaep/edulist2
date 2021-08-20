@@ -9,9 +9,10 @@ interface IYouTubeData {
 }
 
 export const useYouTube = (youTubeId: string) => {
-	const { loading: loadingYouTubeId, data } = useQuery<IYouTubeData>(YOUTUBE, {
-		variables: { id: youTubeId },
-	})
+	const { loading: loadingYouTubeId, data: youTubeVideo } =
+		useQuery<IYouTubeData>(YOUTUBE, {
+			variables: { id: youTubeId },
+		})
 	const [loadingYouTubeData, setLoadingYouTubeData] = useState(true)
 	const [youTubeVideoDetails, setYouTubeVideoDetails] =
 		useState<IYouTubeVideoDetails>({
@@ -24,15 +25,15 @@ export const useYouTube = (youTubeId: string) => {
 		})
 
 	useEffect(() => {
-		if (data && data.youTube) {
+		if (youTubeVideo && youTubeVideo.youTube) {
 			setLoadingYouTubeData(true)
-			getVideoDetails(data.youTube.videoId).then(
+			getVideoDetails(youTubeVideo.youTube.videoId).then(
 				(videoDetails: IYouTubeVideoDetails) => {
 					setYouTubeVideoDetails(videoDetails)
 				}
 			)
 		}
-	}, [data])
+	}, [youTubeVideo])
 
 	useEffect(() => {
 		if (loadingYouTubeData && youTubeVideoDetails.title !== '')
@@ -41,6 +42,7 @@ export const useYouTube = (youTubeId: string) => {
 
 	return {
 		loading: loadingYouTubeId || loadingYouTubeData,
+		youTubeVideo: youTubeVideo?.youTube,
 		youTubeVideoDetails,
 	}
 }

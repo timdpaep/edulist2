@@ -6,12 +6,14 @@ import { CourseSection, Loader, CourseHeaderButtons } from '../Components'
 import { ICourseSection } from '../interfaces'
 
 interface CourseParams {
-	slug: string
+	courseSlug: string
 }
 
 export default () => {
-	const { slug } = useParams<CourseParams>()
-	const { loading, error, data } = useQuery(COURSE, { variables: { slug } })
+	const { courseSlug } = useParams<CourseParams>()
+	const { loading, error, data } = useQuery(COURSE, {
+		variables: { courseSlug },
+	})
 
 	if (loading) return <Loader />
 

@@ -10,7 +10,7 @@
   --blue: #109ad4;
   --black: #141414;
   --white: #ffffff;
-  --lightGrey: rgba(0,0,0,.05);
+  --lightGrey: rgba(0,0,0,.03);
 
   /* Color Intentions */
   --background-color: var(--white);
