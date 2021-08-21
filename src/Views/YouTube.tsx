@@ -65,7 +65,6 @@ export default ({ youtubeId, loadingChanged }: IYouTubeProps) => {
 				className='react-player'
 				width='100%'
 				controls
-				muted
 				volume={0}
 				config={{
 					youtube: {
