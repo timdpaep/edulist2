@@ -65,7 +65,7 @@ export default ({ youtubeId, loadingChanged }: IYouTubeProps) => {
 				className='react-player'
 				width='100%'
 				controls
-				volume={0}
+				volume={50}
 				config={{
 					youtube: {
 						playerVars: {
