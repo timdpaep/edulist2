@@ -23,9 +23,10 @@ const YouTubeContainer = styled.div`
 	}
 `
 
-const YouTubeInfoContainer = styled.div`
+const YouTubeInfoContainer = styled.div<{ asideVisible: boolean }>`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-template-columns: ${props =>
+		props.asideVisible ? 'repeat(auto-fit, minmax(300px, 1fr))' : '1fr'};
 	column-gap: 20px;
 	p {
 		margin-top: 0;
@@ -65,7 +66,7 @@ export default ({ youtubeId, loadingChanged }: IYouTubeProps) => {
 				className='react-player'
 				width='100%'
 				controls
-				volume={50}
+				volume={0.5}
 				config={{
 					youtube: {
 						playerVars: {
@@ -78,7 +79,11 @@ export default ({ youtubeId, loadingChanged }: IYouTubeProps) => {
 				}}
 			/>
 			<h2>{youTubeVideoDetails.title}</h2>
-			<YouTubeInfoContainer>
+			<YouTubeInfoContainer
+				asideVisible={
+					youTubeVideo.assets.length > 0 || youTubeVideo.references.length > 0
+				}
+			>
 				<p>{youTubeVideoDetails.description}</p>
 				<AsideContainer>
 					<AssetsSection assets={youTubeVideo.assets} />

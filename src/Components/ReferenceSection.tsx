@@ -24,6 +24,8 @@ export const ReferenceSection = ({
 				return 'Artikels'
 			case ReferenceType.Podcast:
 				return 'Podcasts'
+			case ReferenceType.Link:
+				return 'Links'
 			default:
 				return 'Unknown'
 		}

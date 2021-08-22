@@ -16,4 +16,5 @@ export enum IconButtonType {
 export enum ReferenceType {
 	Article = 'article',
 	Podcast = 'podcast',
+	Link = 'link',
 }
