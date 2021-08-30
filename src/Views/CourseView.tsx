@@ -26,7 +26,11 @@ export default () => {
 				buttons={
 					<CourseHeaderButtons
 						showCanvas={data?.course?.canvasUrl}
+						showTeamsChannelUrl={data?.course?.teamsChannelUrl}
 						onCanvasClicked={() => window.open(data?.course?.canvasUrl, '_blank')}
+						onTeamsChannelClicked={() =>
+							window.open(data?.course?.teamsChannelUrl, '_blank')
+						}
 					/>
 				}
 			/>

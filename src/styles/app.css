@@ -29,7 +29,7 @@ body {
 a {
   text-decoration: none;
   color: var(--purple);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 a:hover {
@@ -107,14 +107,15 @@ button {
   --buttonColor: var(--orange);
   --buttonBorder: none;
   --buttonBorderRadius: 4px;
+  --buttonPadding: var(--button-padding);
 
   color: var(--buttonTextColor);
   background-color: var(--buttonColor);
   outline: none;
   border: var(--buttonBorder);
-  font-weight: bold;
+  font-weight: 400;
   border-radius: var(--buttonBorderRadius);
-  padding: 7px;
+  padding: var(--buttonPadding);
   cursor: pointer;
 }
 

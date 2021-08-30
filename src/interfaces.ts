@@ -13,6 +13,7 @@ export interface ICourse {
 	title: string
 	slug: string
 	canvasUrl: string
+	teamsChannelUrl: string
 }
 
 export interface ICourseSection {
@@ -38,6 +39,7 @@ export interface ICheckList {
 	checklistSections: ICheckListSection[]
 	assets: IAsset[]
 	references: IReference[]
+	teamsMeetings: ITeamsMeeting[]
 }
 
 export interface ICheckListItem {
@@ -54,6 +56,15 @@ export interface ICheckListItem {
 		id: string
 	}
 	description: string
+}
+
+/**
+ * Teams Meeting
+ */
+
+export interface ITeamsMeeting {
+	time: string
+	meetingLink: string
 }
 
 /**

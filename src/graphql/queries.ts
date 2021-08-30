@@ -17,6 +17,7 @@ const COURSE = gql`
 			title
 			slug
 			canvasUrl
+			teamsChannelUrl
 			courseSections {
 				id
 				title
@@ -65,6 +66,10 @@ const CHECKLIST = gql`
 				title
 				referenceType
 				url
+			}
+			teamsMeetings {
+				time
+				meetingLink
 			}
 		}
 	}

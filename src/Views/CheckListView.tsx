@@ -76,6 +76,7 @@ export default () => {
 				buttons={
 					<CheckListHeaderButtons
 						onOverviewClicked={() => history.push(`/${courseSlug}`)}
+						teamsMeetings={data.checklist.teamsMeetings}
 					/>
 				}
 			/>

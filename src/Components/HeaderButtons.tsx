@@ -4,7 +4,8 @@ import styled from 'styled-components'
 const HeaderButtonsContainer = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	button + button {
+	button + button,
+	button + div {
 		margin-left: 10px;
 	}
 	button:first-child {

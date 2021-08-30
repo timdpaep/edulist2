@@ -11,6 +11,8 @@
   --black: #141414;
   --white: #ffffff;
   --lightGrey: rgba(0,0,0,.03);
+  --lightPurple: rgba(126, 87, 197, 0.05);
+  --teamsPurple: #464EB8;
 
   /* Color Intentions */
   --background-color: var(--white);
@@ -29,13 +31,16 @@
   --ib-pdf-background-color: #FF2800;
   --ib-asset-background-color: var(--purple);
 
+  /* Button */
+  --button-padding: 7px;
+
   /* Loader */
   --loader-color: var(--orange);
   --loader-background-color: rgba(221, 221, 221, 0);
   --loader-width-height: 40px;
 
   /* Fonts */
-  --primary-font: "Lato", sans-serif;
+  --primary-font: 'Open Sans', sans-serif;
 
   /* Elevation */
   --level-1: 0 1px 3px 0 rgba(0, 24, 88, 0.1), 0 1px 2px 0 rgba(0, 24, 88, 0.06);

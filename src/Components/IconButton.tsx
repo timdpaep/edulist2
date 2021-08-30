@@ -15,6 +15,7 @@ interface IIconButtonProps {
 	backgroundColor?: string
 	color?: string
 	icon?: IconProp
+	svgIcon?: any
 	className?: string
 }
 
@@ -59,6 +60,7 @@ export const IconButton = ({
 	backgroundColor = 'transparent',
 	icon = faTimes,
 	className = '',
+	svgIcon = null,
 }: IIconButtonProps) => (
 	<IconButtonContainer
 		onClick={onClick}
@@ -69,6 +71,7 @@ export const IconButton = ({
 		whileTap='pressed'
 		className={className}
 	>
-		<FontAwesomeIcon icon={icon} />
+		{icon && <FontAwesomeIcon icon={icon} />}
+		{svgIcon && svgIcon}
 	</IconButtonContainer>
 )
