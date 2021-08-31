@@ -17,6 +17,7 @@ interface IIconButtonProps {
 	icon?: IconProp
 	svgIcon?: any
 	className?: string
+	style?: React.CSSProperties
 }
 
 /**
@@ -56,6 +57,7 @@ const IconButtonContainer = styled(motion.button)<IIconButtonProps>`
 
 export const IconButton = ({
 	onClick,
+	style,
 	color = 'var(--black)',
 	backgroundColor = 'transparent',
 	icon = faTimes,
@@ -70,6 +72,7 @@ export const IconButton = ({
 		whileHover='hover'
 		whileTap='pressed'
 		className={className}
+		style={style}
 	>
 		{icon && <FontAwesomeIcon icon={icon} />}
 		{svgIcon && svgIcon}

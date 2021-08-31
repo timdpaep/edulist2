@@ -56,6 +56,7 @@ export interface ICheckListItem {
 		id: string
 	}
 	description: string
+	bigDescription: string
 }
 
 /**

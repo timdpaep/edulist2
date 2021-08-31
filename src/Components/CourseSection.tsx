@@ -19,8 +19,7 @@ const CourseSectionList = styled.ul`
 	}
 
 	li > a:hover {
-		text-decoration: none;
-		border-bottom: 1px solid var(--black);
+		text-decoration: underline;
 	}
 
 	li:before {

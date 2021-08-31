@@ -1,20 +1,18 @@
-/**
- * TypeScript
- */
-
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useDownloadFile } from 'Hooks'
 
 interface ILinkProps {
 	href: string
-	label: string
+	children: React.ReactNode
 	target?: string
 	download?: boolean
+	fileLabel?: string
 }
 
 export const Link = ({
 	href,
-	label,
+	fileLabel = 'default',
+	children,
 	target = '_blank',
 	download = false,
 }: ILinkProps) => {
@@ -30,13 +28,13 @@ export const Link = ({
 		<a
 			onClick={e => {
 				e.preventDefault()
-				linkClick(href, label, target, download)
+				linkClick(href, fileLabel, target, download)
 			}}
 			href={href}
 			target={target}
 			rel='noreferrer'
 		>
-			{label}
+			{children}
 		</a>
 	)
 }

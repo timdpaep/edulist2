@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ICheckListItem } from 'interfaces'
 import { IconButtonType } from 'enums'
+import { useEduModal } from 'Hooks'
 import { CheckListYouTubeDescription } from './CheckListDescriptions'
+import { LinkButton } from '.'
 
 /**
  * TypeScript
@@ -37,6 +39,7 @@ export const CheckListItemDescription = ({
 	checked = false,
 }: IChecklistItemDescriptionProps) => {
 	const [isChecked, setIsChecked] = useState<boolean>(checked)
+	const { openModal } = useEduModal()
 
 	useEffect(() => {
 		setIsChecked(checked)
@@ -49,13 +52,32 @@ export const CheckListItemDescription = ({
 				animate={isChecked ? 'checked' : 'unchecked'}
 				style={{
 					textDecoration: isChecked ? 'line-through' : 'none',
+					display: 'flex',
 				}}
 			>
-				{checkListItem.description && <>{checkListItem.description}</>}
-				{checkListItem.type === IconButtonType.YouTube &&
-					!checkListItem.description && (
-						<CheckListYouTubeDescription youTubeId={checkListItem.youTube.id} />
-					)}
+				{checkListItem.bigDescription ? (
+					<LinkButton
+						onClick={() =>
+							openModal({ content: <p>{checkListItem.bigDescription}</p> })
+						}
+						disabled={isChecked}
+						className='checklistitem-link-button'
+					>
+						{checkListItem.description && <>{checkListItem.description}</>}
+						{checkListItem.type === IconButtonType.YouTube &&
+							!checkListItem.description && (
+								<CheckListYouTubeDescription youTubeId={checkListItem.youTube.id} />
+							)}
+					</LinkButton>
+				) : (
+					<>
+						{checkListItem.description && <>{checkListItem.description}</>}
+						{checkListItem.type === IconButtonType.YouTube &&
+							!checkListItem.description && (
+								<CheckListYouTubeDescription youTubeId={checkListItem.youTube.id} />
+							)}
+					</>
+				)}
 			</motion.div>
 		</>
 	)

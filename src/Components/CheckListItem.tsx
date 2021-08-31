@@ -55,12 +55,8 @@ export const CheckListItem = ({
 	return (
 		<CheckListItemContainer id={checkListItem.id}>
 			<CheckBox
-				checkBoxWidth={`
-					calc(2 * var(--checklist-item-size-mobile))
-					@media ${device.mobile} {
-						calc(2 * var(--checklist-item-size))
-					}
-				`}
+				checkBoxWidth='2.4rem'
+				checkBoxHeight='2.4rem'
 				strokeColor='var(--checklist-checkbox-color)'
 				strokeWidth={7}
 				checked={isChecked}

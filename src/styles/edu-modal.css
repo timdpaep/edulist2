@@ -1,0 +1,45 @@
+/**
+ * Styles for the modal
+ */
+
+.edu-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lightGrey);
+  width: 100vw;
+  height: 100vh;
+}
+
+.edu-modal-content {
+  background-color: var(--white);
+  border-radius: var(--default-border-radius);
+  box-shadow: var(--level-2);
+  width: 90vw;
+}
+
+@media screen and (min-width: 768px) {
+  .edu-modal-content {
+    width: 50vw;
+  }
+}
+
+.ReactModal__Content {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 200ms ease-in-out;
+}
+
+.ReactModal__Content--after-open{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ReactModal__Content--before-close{
+    opacity: 0;
+}

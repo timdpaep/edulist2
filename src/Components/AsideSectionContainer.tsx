@@ -28,7 +28,7 @@ interface IAsideSectionContainerProps {
  */
 
 const AsideSectionContainerWrapper = styled.section`
-	border-radius: 5px;
+	border-radius: var(--default-border-radius);
 	padding: var(--container-gap-mobile);
 	background: var(--lightGrey);
 	h3 {
@@ -81,11 +81,13 @@ export const AsideSectionContainer = ({
 							<img src={cross} alt='list item for aside items' />
 						)}
 						<Link
-							label={item.label}
+							fileLabel={item.label}
 							download={item.download}
 							href={item.url}
 							target='_blank'
-						/>
+						>
+							{item.label}
+						</Link>
 					</li>
 				))}
 		</ul>

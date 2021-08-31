@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 interface CheckBoxProps {
 	strokeColor?: string
 	checkBoxWidth: string
+	checkBoxHeight: string
 	strokeWidth?: number
 	checked?: boolean
 	checkedChanged?: (checked: boolean) => void
@@ -58,6 +59,7 @@ const pathVariants = ({ strokeColor = '#000000' }) => ({
 export const CheckBox = ({
 	strokeColor = '#000000',
 	checkBoxWidth = '100px',
+	checkBoxHeight = '100px',
 	strokeWidth = 6,
 	checked = false,
 	checkedChanged,
@@ -72,6 +74,7 @@ export const CheckBox = ({
 		<div
 			style={{
 				width: checkBoxWidth,
+				height: checkBoxHeight,
 			}}
 		>
 			<motion.svg

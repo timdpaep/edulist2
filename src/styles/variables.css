@@ -34,6 +34,9 @@
   /* Button */
   --button-padding: 7px;
 
+  /* Modal */
+  --modal-content-padding: 25px;
+
   /* Loader */
   --loader-color: var(--orange);
   --loader-background-color: rgba(221, 221, 221, 0);
@@ -63,4 +66,5 @@
   /* Layout */
   --container-gap: 50px;
   --container-gap-mobile: 30px;
+  --default-border-radius: 5px;
 }

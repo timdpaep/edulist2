@@ -44,6 +44,7 @@ const CHECKLIST = gql`
 					id
 					type
 					description
+					bigDescription
 					url
 					youTube {
 						id

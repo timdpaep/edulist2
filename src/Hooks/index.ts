@@ -1,6 +1,7 @@
 export { useAppDispatch } from './useAppDispatch'
 export { useAppSelector } from './useAppSelector'
 export { useEduSideBar } from './useEduSideBar'
+export { useEduModal } from './useEduModal'
 export { useMediaQuery } from './useMediaQuery'
 export { useDownloadFile } from './useDownloadFile'
 export { useEduDatabase } from './useEduDatabase'

@@ -30,10 +30,9 @@ export const CheckListHeaderButtons = ({
 				<DropDownMenu>
 					{teamsMeetings.map(tm => (
 						<DropDownMenuItem divider={teamsMeetings.length > 1}>
-							<Link
-								href={tm.meetingLink}
-								label={dayjs(tm.time).format('DD/MM/YYYY [om] HH:mm')}
-							/>
+							<Link href={tm.meetingLink}>
+								{dayjs(tm.time).format('DD/MM/YYYY [om] HH:mm')}
+							</Link>
 						</DropDownMenuItem>
 					))}
 				</DropDownMenu>

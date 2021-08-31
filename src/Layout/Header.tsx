@@ -12,7 +12,7 @@ const HeaderContainer = styled(ContainerFluid)`
   width: 100%;
  	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 60% 40%;
+	grid-template-columns: 70% 30%;
 	align-items: center;
 	justify-content: space-between;
 	padding-top: 30px;
