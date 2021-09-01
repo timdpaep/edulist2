@@ -15,7 +15,7 @@ interface IIconButtonProps {
 	backgroundColor?: string
 	color?: string
 	icon?: IconProp
-	svgIcon?: any
+	svgIcon?: string
 	className?: string
 	style?: React.CSSProperties
 }
@@ -62,7 +62,7 @@ export const IconButton = ({
 	backgroundColor = 'transparent',
 	icon = faTimes,
 	className = '',
-	svgIcon = null,
+	svgIcon = '',
 }: IIconButtonProps) => (
 	<IconButtonContainer
 		onClick={onClick}

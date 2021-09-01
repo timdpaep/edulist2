@@ -14,7 +14,7 @@ interface IDropDownButtonProps {
 	icon?: IconProp
 	children?: React.ReactNode
 	color?: string
-	svgIcon?: any
+	svgIcon?: string
 }
 
 /**

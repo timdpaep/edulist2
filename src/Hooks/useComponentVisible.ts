@@ -5,8 +5,12 @@ export const useComponentVisible = (initialIsVisible: boolean) => {
 		useState<boolean>(initialIsVisible)
 	const ref = useRef<HTMLDivElement>(null)
 
-	const handleClickOutside = (event: any) => {
-		if (ref.current && !ref.current?.contains(event.target)) {
+	const handleClickOutside = (event: Event) => {
+		if (
+			event.target instanceof Element &&
+			ref.current &&
+			!ref.current?.contains(event.target)
+		) {
 			setIsComponentVisible(false)
 		}
 	}
