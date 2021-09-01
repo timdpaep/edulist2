@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { SectionContainer } from '../Layout'
 import rightArrow from '../images/right-arrow.svg'
 import { ICourse, ICourseSection } from '../interfaces'
+import device from '../device'
 
 interface CourseSectionProps {
 	course: ICourse
@@ -13,26 +14,30 @@ interface CourseSectionProps {
 const CourseSectionList = styled.ul`
 	padding-left: 0;
 	list-style-type: none;
+`
 
-	li > a {
+const CourseSectionListLiContentWrapper = styled.div`
+	display: grid;
+	grid-template-columns: 1em 1fr;
+	grid-gap: 10px;
+
+	& > a {
 		color: var(--black);
 	}
 
-	li > a:hover {
+	& > a:hover {
 		text-decoration: underline;
 	}
 
-	li:before {
-		content: '';
-		display: inline-block;
-		height: 1em;
-		width: 1em;
-		background-image: url(${rightArrow});
-		background-size: contain;
-		background-repeat: no-repeat;
-		padding-left: 2em;
+	& > img {
 		position: relative;
-		top: 3px;
+		top: 5px;
+	}
+
+	@media ${device.mobile} {
+		& > img {
+			top: 8px;
+		}
 	}
 `
 
@@ -48,14 +53,17 @@ export const CourseSection = ({
 				<CourseSectionList>
 					{courseSection.checklists.map(checklist => (
 						<li key={checklist.id}>
-							<Link
-								to={{
-									pathname: `/${course.slug}/${checklist.slug}`,
-									state: { id: courseSection.id },
-								}}
-							>
-								{checklist.title}
-							</Link>
+							<CourseSectionListLiContentWrapper>
+								<img src={rightArrow} alt='Right List Arrow' />
+								<Link
+									to={{
+										pathname: `/${course.slug}/${checklist.slug}`,
+										state: { id: courseSection.id },
+									}}
+								>
+									{checklist.title}
+								</Link>
+							</CourseSectionListLiContentWrapper>
 						</li>
 					))}
 				</CourseSectionList>
