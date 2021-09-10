@@ -13,6 +13,7 @@
   --lightGrey: rgba(0,0,0,.03);
   --lightPurple: rgba(126, 87, 197, 0.05);
   --teamsPurple: #464EB8;
+  --red: #FF0000;
 
   /* Color Intentions */
   --background-color: var(--white);
@@ -21,6 +22,15 @@
   --section-title-color: var(--orange);
   --checklist-checkbox-color: var(--green);
   --exercise-numbering-color: var(--purple);
+
+  /* Progress Bar Color Intentions
+     (read as "from 20 percent, from 40 percent, ...")
+  */
+  --background-color-20: var(--red);
+  --background-color-40: var(--orange);
+  --background-color-60: var(--orange);
+  --background-color-80: var(--orange);
+  --background-color-100: var(--green);
 
   /* Color Icon Button Intention */
   --ib-default-background-color: var(--orange);
