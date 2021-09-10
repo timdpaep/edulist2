@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appReducer from 'redux/appSlice'
+import progressReducer from 'redux/progressSlice'
 
 const store = configureStore({
 	reducer: {
 		app: appReducer,
+		progress: progressReducer,
 	},
 })
 

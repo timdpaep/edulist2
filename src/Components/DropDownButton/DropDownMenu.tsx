@@ -19,6 +19,7 @@ const DropDownMenuList = styled(motion.ul)<IDropDownMenuProps>`
 	box-shadow: var(--level-1);
 	/* Button Padding, 2X (top & bottom) + 2px of shadow */
 	top: calc(1em + (var(--button-padding) * 2) + 4px);
+	z-index: 999;
 `
 
 export const DropDownMenu = ({ position, children }: IDropDownMenuProps) => (

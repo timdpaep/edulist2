@@ -17,4 +17,5 @@ export enum ReferenceType {
 	Article = 'article',
 	Podcast = 'podcast',
 	Link = 'link',
+	Video = 'video',
 }

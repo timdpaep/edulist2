@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import React from 'react'
 import type { RootState } from '../store'
 
 interface SideBarState {
@@ -11,7 +10,7 @@ interface SideBarState {
 interface ModalState {
 	open: boolean
 	title?: string
-	content: React.ReactNode
+	content: string
 }
 
 // Define a type for the slice state
@@ -30,7 +29,7 @@ const initialState: AppState = {
 	modal: {
 		open: false,
 		title: '',
-		content: null,
+		content: '',
 	},
 }
 

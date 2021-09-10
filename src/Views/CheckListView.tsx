@@ -10,8 +10,10 @@ import {
 	CheckListHeaderButtons,
 	ReferenceSection,
 	AssetsSection,
+	ProgressBar,
+	ProgressStatus,
 } from '../Components'
-import { useReferences } from '../Hooks'
+import { useReferences, useProgress } from '../Hooks'
 import device from '../device'
 
 /**
@@ -64,10 +66,16 @@ export default () => {
 		variables: { checklistSlug },
 	})
 
-	// use the load effect
-	if (loading) return <Loader />
+	const {
+		loading: progressLoading,
+		getProgressForSection,
+		currentProgress,
+	} = useProgress(checklistSlug)
 
-	if (error || !data) return null
+	// use the load effect
+	if (loading || progressLoading) return <Loader />
+
+	if (error || !data || !currentProgress) return null
 
 	return (
 		<>
@@ -81,12 +89,19 @@ export default () => {
 				}
 			/>
 			<Main>
+				<ProgressBar percentage={currentProgress.totalPercentage} />
 				<CheckListViewContainer
 					asideVisible={
 						data.checklist.assets.length > 0 || data.checklist.references.length > 0
 					}
 				>
 					<div>
+						<ProgressStatus
+							progressDurationLeft={currentProgress.totalDurationLeft}
+							progressDurationDone={currentProgress.totalDurationDone}
+							progressDurationDoneReadable={currentProgress.totalDurationDoneReadable}
+							progressDurationLeftReadable={currentProgress.totalDurationLeftReadable}
+						/>
 						{data &&
 							data.checklist &&
 							data.checklist.checklistSections &&
@@ -95,6 +110,9 @@ export default () => {
 									key={checkListSection.id}
 									checkListId={data.checklist.id}
 									checkListSection={checkListSection}
+									checklistSectionDuration={
+										getProgressForSection(checkListSection.id)?.totalDurationReadable
+									}
 								/>
 							))}
 					</div>

@@ -43,11 +43,13 @@ const CHECKLIST = gql`
 				checklistItems {
 					id
 					type
+					duration
 					description
 					bigDescription
 					url
 					youTube {
 						id
+						videoId
 					}
 					exercise {
 						id
@@ -71,6 +73,32 @@ const CHECKLIST = gql`
 			teamsMeetings {
 				time
 				meetingLink
+			}
+		}
+	}
+`
+
+const CHECKLISTS_FOR_CALCULATING_PROGRESS = `
+	query CheckList($checklistSlug: String!) {
+		checklist(where: { slug: $checklistSlug }) {
+			id
+			title
+			slug
+			checklistSections {
+				id
+				title
+				checklistItems {
+					id
+					type
+					duration
+					youTube {
+						id
+						videoId
+					}
+					exercise {
+						id
+					}
+				}
 			}
 		}
 	}
@@ -120,4 +148,12 @@ const GET_ASSET = gql`
 	}
 `
 
-export { COURSES, COURSE, CHECKLIST, EXERCISE, YOUTUBE, GET_ASSET }
+export {
+	COURSES,
+	COURSE,
+	CHECKLIST,
+	CHECKLISTS_FOR_CALCULATING_PROGRESS,
+	EXERCISE,
+	YOUTUBE,
+	GET_ASSET,
+}

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import './styles/styles.css'
 import { Provider } from 'react-redux'
+import Modal from 'react-modal'
 import App from './App'
 import store from './store'
 
@@ -10,6 +11,8 @@ const client = new ApolloClient({
 	uri: process.env.REACT_APP_GRAPH_CMS,
 	cache: new InMemoryCache(),
 })
+
+Modal.setAppElement('#root')
 
 ReactDOM.render(
 	<React.StrictMode>

@@ -38,7 +38,7 @@ export default ({ open = false, title = '', content }: IEduModalProps) => {
 	const dispatch = useAppDispatch()
 
 	function closeModal() {
-		dispatch(setModal({ open: false, content: null }))
+		dispatch(setModal({ open: false, content: '' }))
 	}
 
 	return (
@@ -53,7 +53,7 @@ export default ({ open = false, title = '', content }: IEduModalProps) => {
 					{title && <h4>{title}</h4>}
 					<IconButton onClick={() => closeModal()} icon={faTimes} />
 				</CloseButtonContainer>
-				{content}
+				<p>{content}</p>
 			</ModalContentContainer>
 		</Modal>
 	)

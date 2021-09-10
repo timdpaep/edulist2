@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ICheckListItem } from 'interfaces'
 import { IconButtonType } from 'enums'
 import { useEduModal } from 'Hooks'
+import dayjs from 'dayjs'
 import { CheckListYouTubeDescription } from './CheckListDescriptions'
 import { LinkButton } from '.'
 
@@ -57,13 +58,20 @@ export const CheckListItemDescription = ({
 			>
 				{checkListItem.bigDescription ? (
 					<LinkButton
-						onClick={() =>
-							openModal({ content: <p>{checkListItem.bigDescription}</p> })
-						}
+						onClick={() => openModal({ content: checkListItem.bigDescription })}
 						disabled={isChecked}
 						className='checklistitem-link-button'
 					>
-						{checkListItem.description && <>{checkListItem.description}</>}
+						{checkListItem.description && (
+							<>
+								{checkListItem.description}{' '}
+								{checkListItem.duration
+									? `(${dayjs
+											.duration(checkListItem.duration * 1000)
+											.format('HH[u]mm[m]ss[s]')})`
+									: ''}
+							</>
+						)}
 						{checkListItem.type === IconButtonType.YouTube &&
 							!checkListItem.description && (
 								<CheckListYouTubeDescription youTubeId={checkListItem.youTube.id} />
@@ -71,7 +79,14 @@ export const CheckListItemDescription = ({
 					</LinkButton>
 				) : (
 					<>
-						{checkListItem.description && <>{checkListItem.description}</>}
+						{checkListItem.description && (
+							<>
+								{checkListItem.description}{' '}
+								{checkListItem.duration
+									? `(${dayjs.duration(checkListItem.duration * 1000).format('mm:ss')})`
+									: ''}
+							</>
+						)}
 						{checkListItem.type === IconButtonType.YouTube &&
 							!checkListItem.description && (
 								<CheckListYouTubeDescription youTubeId={checkListItem.youTube.id} />

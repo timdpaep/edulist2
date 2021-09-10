@@ -29,7 +29,7 @@ export const CheckListHeaderButtons = ({
 			<DropDownButton svgIcon={TeamsIcon} color='teamsPurple'>
 				<DropDownMenu>
 					{teamsMeetings.map(tm => (
-						<DropDownMenuItem divider={teamsMeetings.length > 1}>
+						<DropDownMenuItem key={tm.time} divider={teamsMeetings.length > 1}>
 							<Link href={tm.meetingLink}>
 								{dayjs(tm.time).format('DD/MM/YYYY [om] HH:mm')}
 							</Link>

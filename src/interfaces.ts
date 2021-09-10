@@ -45,12 +45,14 @@ export interface ICheckList {
 export interface ICheckListItem {
 	id: string
 	type: string
+	duration: number
 	asset: {
 		id: string
 	}
 	url: string
 	youTube: {
 		id: string
+		videoId: string
 	}
 	exercise: {
 		id: string
@@ -125,4 +127,32 @@ export interface IChecklistCheck {
 	id?: number
 	checklistId?: string
 	checklistItemId?: string
+}
+
+/**
+ * Progress
+ */
+
+export interface IProgress {
+	totalPercentage: number
+	totalDuration: number
+	totalDurationReadable: string
+	totalDurationSections: IProgressSection[]
+	totalDurationLeft: number
+	totalDurationDone: number
+	totalDurationLeftReadable: string
+	totalDurationDoneReadable: string
+}
+
+export interface IProgressSection {
+	id: string
+	totalDuration: number
+	totalDurationReadable: string
+	checklistItemProgress: IChecklistItemProgress[]
+}
+
+export interface IChecklistItemProgress {
+	id: string
+	checked: boolean
+	duration: number
 }
