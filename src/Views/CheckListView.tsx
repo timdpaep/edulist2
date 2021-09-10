@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { Header, Footer, Main } from '../Layout'
 import { CHECKLIST } from '../graphql/queries'
-import { ICheckList } from '../interfaces'
+import { ICheckList, ICheckListSection } from '../interfaces'
 import {
 	CheckListSection,
 	Loader,
@@ -77,6 +77,16 @@ export default () => {
 
 	if (error || !data || !currentProgress) return null
 
+	const getChecklistSectionDuration = (checkListSection: ICheckListSection) => {
+		const progressForSection = getProgressForSection(checkListSection.id)
+		if (progressForSection) {
+			return progressForSection.totalDuration > 0
+				? progressForSection.totalDurationReadable
+				: ''
+		}
+		return ''
+	}
+
 	return (
 		<>
 			<Header
@@ -110,9 +120,9 @@ export default () => {
 									key={checkListSection.id}
 									checkListId={data.checklist.id}
 									checkListSection={checkListSection}
-									checklistSectionDuration={
-										getProgressForSection(checkListSection.id)?.totalDurationReadable
-									}
+									checklistSectionDuration={getChecklistSectionDuration(
+										checkListSection
+									)}
 								/>
 							))}
 					</div>
