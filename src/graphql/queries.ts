@@ -47,11 +47,14 @@ const CHECKLIST = gql`
 					description
 					bigDescription
 					url
+					exercise {
+						id
+					}
 					youTube {
 						id
 						videoId
 					}
-					exercise {
+					slide {
 						id
 					}
 					asset {
@@ -137,6 +140,20 @@ const YOUTUBE = gql`
 	}
 `
 
+const SLIDE = gql`
+	query Slide($id: ID!) {
+		slide(where: { id: $id }) {
+			title
+			slideUrl
+			slidesStyle
+			slideX
+			slideY
+			hideByLine
+			hideShareButton
+		}
+	}
+`
+
 const GET_ASSET = gql`
 	query GetAsset($id: ID!) {
 		asset(where: { id: $id }) {
@@ -154,6 +171,7 @@ export {
 	CHECKLIST,
 	CHECKLISTS_FOR_CALCULATING_PROGRESS,
 	EXERCISE,
-	YOUTUBE,
 	GET_ASSET,
+	YOUTUBE,
+	SLIDE,
 }

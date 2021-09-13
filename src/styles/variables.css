@@ -40,6 +40,7 @@
   --ib-github-background-color: var(--black);
   --ib-pdf-background-color: #FF2800;
   --ib-asset-background-color: var(--purple);
+  --ib-slides-background-color: #D65D73;
 
   /* Button */
   --button-padding: 7px;

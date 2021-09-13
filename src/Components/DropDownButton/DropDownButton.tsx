@@ -14,7 +14,7 @@ interface IDropDownButtonProps {
 	icon?: IconProp
 	children?: React.ReactNode
 	color?: string
-	svgIcon?: string
+	svgIcon?: React.ReactNode
 }
 
 /**
@@ -51,13 +51,7 @@ export const DropDownButton = ({
 				onClick={() => setIsComponentVisible(!isComponentVisible)}
 			>
 				{icon && <FontAwesomeIcon icon={icon} />}
-				{svgIcon && (
-					<img
-						style={{ width: '1em', display: 'block' }}
-						src={svgIcon}
-						alt='SVG Icon'
-					/>
-				)}
+				{svgIcon && svgIcon}
 				{label && label}
 			</Button>
 			{isComponentVisible && <>{children}</>}

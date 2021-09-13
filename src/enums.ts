@@ -11,6 +11,7 @@ export enum IconButtonType {
 	Link = 'link',
 	Pdf = 'pdf',
 	YouTube = 'youtube',
+	Slides = 'slides',
 }
 
 export enum ReferenceType {
@@ -18,4 +19,34 @@ export enum ReferenceType {
 	Podcast = 'podcast',
 	Link = 'link',
 	Video = 'video',
+}
+
+/**
+ * EduSidebar
+ */
+
+export enum EduSideBarType {
+	None = 'none',
+	YouTube = 'youtube',
+	Exercise = 'exercise',
+}
+
+/**
+ * EduModal
+ */
+
+export enum EduModalType {
+	None = 'none',
+	Slides = 'slides',
+}
+
+/**
+ * Slides
+ */
+
+export enum SlidesType {
+	Light = 'light',
+	Dark = 'dark',
+	Seamless = 'hidden',
+	Transparant = 'transparant',
 }

@@ -2,7 +2,7 @@ import { MouseEvent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList } from '@fortawesome/free-solid-svg-icons'
 import dayjs from 'dayjs'
-import { HeaderButtons, Button } from '.'
+import { HeaderButtons, Button, SvgIcon } from '.'
 import {
 	DropDownButton,
 	DropDownMenu,
@@ -26,7 +26,15 @@ export const CheckListHeaderButtons = ({
 			<FontAwesomeIcon icon={faList} />
 		</Button>
 		{teamsMeetings && teamsMeetings.length > 0 && (
-			<DropDownButton svgIcon={TeamsIcon} color='teamsPurple'>
+			<DropDownButton
+				svgIcon={
+					<SvgIcon
+						source={TeamsIcon}
+						title='An icon to show the teams meeting dropdown list'
+					/>
+				}
+				color='teamsPurple'
+			>
 				<DropDownMenu>
 					{teamsMeetings.map(tm => (
 						<DropDownMenuItem key={tm.time} divider={teamsMeetings.length > 1}>

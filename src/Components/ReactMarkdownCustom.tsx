@@ -61,7 +61,7 @@ export const ReactMarkdownCustom: React.FC<IReactMarkdownCustom> = ({
 	markdown,
 }: IReactMarkdownCustom) => {
 	const components: Partial<NormalComponents & SpecialComponents> = {
-		code: ({ inline, className, children, ...props }) => {
+		code: ({ inline, className, children, ...props }: any) => {
 			const match = /language-(\w+)/.exec(className || '')
 			if (!inline && match) {
 				return (
@@ -84,14 +84,14 @@ export const ReactMarkdownCustom: React.FC<IReactMarkdownCustom> = ({
 				</Code>
 			)
 		},
-		li: ({ children }) => (
+		li: ({ children }: any) => (
 			<Li>
 				<span>{children}</span>
 			</Li>
 		),
-		h2: ({ children }) => <H2>{children}</H2>,
-		ol: ({ children }) => <Ol>{children}</Ol>,
-		ul: ({ children }) => <Ul>{children}</Ul>,
+		h2: ({ children }: any) => <H2>{children}</H2>,
+		ol: ({ children }: any) => <Ol>{children}</Ol>,
+		ul: ({ children }: any) => <Ul>{children}</Ul>,
 	}
 	return <ReactMarkdown components={components}>{markdown}</ReactMarkdown>
 }

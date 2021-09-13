@@ -1,10 +1,11 @@
-import React from 'react'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { IconButton } from 'Components'
+import { EduModalType } from 'enums'
 import { setModal } from '../redux/appSlice'
 import { useAppDispatch } from '../Hooks'
+import Slide from './Slide'
 
 /**
  * Interfaces
@@ -13,11 +14,14 @@ import { useAppDispatch } from '../Hooks'
 interface IEduModalProps {
 	open: boolean
 	title?: string
-	content: React.ReactNode
+	value: string
+	type: EduModalType
 }
 
 const ModalContentContainer = styled.div`
 	position: relative;
+	width: 100%;
+	height: 100%;
 	padding: var(--modal-content-padding);
 	& > *:last-child {
 		margin-bottom: 0;
@@ -34,26 +38,34 @@ const CloseButtonContainer = styled.div<{ showTitle: boolean }>`
 	}
 `
 
-export default ({ open = false, title = '', content }: IEduModalProps) => {
+export default ({
+	open = false,
+	title = '',
+	value = '',
+	type = EduModalType.None,
+}: IEduModalProps) => {
 	const dispatch = useAppDispatch()
 
 	function closeModal() {
-		dispatch(setModal({ open: false, content: '' }))
+		dispatch(
+			setModal({ open: false, value: '', title: '', type: EduModalType.None })
+		)
 	}
 
 	return (
 		<Modal
-			className='edu-modal-content'
+			className={`edu-modal-${type}`}
 			overlayClassName='edu-modal-overlay'
 			isOpen={open}
-			onRequestClose={closeModal}
+			onRequestClose={() => closeModal()}
 		>
 			<ModalContentContainer>
 				<CloseButtonContainer showTitle={title !== ''}>
 					{title && <h4>{title}</h4>}
 					<IconButton onClick={() => closeModal()} icon={faTimes} />
 				</CloseButtonContainer>
-				<p>{content}</p>
+				{type === EduModalType.None && <p>{value}</p>}
+				{type === EduModalType.Slides && <Slide slideId={value} />}
 			</ModalContentContainer>
 		</Modal>
 	)

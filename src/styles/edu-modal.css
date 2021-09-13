@@ -16,7 +16,11 @@
   height: 100vh;
 }
 
-.edu-modal-content {
+/**
+ * Modal for type: None
+ */
+
+.edu-modal-none {
   background-color: var(--white);
   border-radius: var(--default-border-radius);
   box-shadow: var(--level-2);
@@ -24,10 +28,51 @@
 }
 
 @media screen and (min-width: 768px) {
-  .edu-modal-content {
+  .edu-modal-none {
     width: 50vw;
   }
 }
+
+/**
+ * Modal for type: Slides
+ */
+
+.edu-modal-slides {
+  background-color: var(--white);
+  border-radius: var(--default-border-radius);
+  box-shadow: var(--level-2);
+  width: 90vw;
+  height: 45vh;
+}
+
+@media screen and (min-width: 576px) {
+  .edu-modal-slides {
+    height: 60vh;
+    max-width: 576px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .edu-modal-slides {
+    width: 70vw;
+    height: 70vh;
+    max-width: 922px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .edu-modal-slides {
+    height: 90vh;
+    max-width: 1037px;
+  }
+}
+
+/* @media screen and (min-width: 1024px) {
+  .edu-modal-slides {
+    width: 1152px;
+    height: 840px;
+  }
+} */
 
 .ReactModal__Content {
     opacity: 0;

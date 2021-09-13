@@ -24,13 +24,21 @@ export const ProgressStatus = ({
 	if (progressDurationDone === 0 && progressDurationLeft === 0) return null
 	return (
 		<SectionContainer>
-			{progressDurationDone === 0 &&
-				`De totale duur van de checklist is ${progressDurationLeftReadable}. Vink de verschillende checks af en start met leren!`}
+			{progressDurationDone === 0 && (
+				<>
+					Deze checklist duurt <strong>{progressDurationLeftReadable}</strong>
+				</>
+			)}
 			{progressDurationLeft === 0 &&
 				'Je hebt deze checklist afgewerkt en bent klaar voor de volgende stap!'}
-			{progressDurationDone > 0 &&
-				progressDurationLeft > 0 &&
-				`Je hebt ${progressDurationDoneReadable} afgewerkt. Nog ${progressDurationLeftReadable} te gaan.`}
+			{progressDurationDone > 0 && progressDurationLeft > 0 && (
+				<>
+					Je hebt al <strong>{progressDurationDoneReadable}</strong> gewerkt!
+					<br />
+					Hou vol, je bent klaar binnen{' '}
+					<strong>{progressDurationLeftReadable}</strong>
+				</>
+			)}
 		</SectionContainer>
 	)
 }

@@ -2,7 +2,7 @@
  * Used interfaces
  */
 
-import { ReferenceType } from 'enums'
+import { ReferenceType, SlidesType } from 'enums'
 
 /**
  * Courses
@@ -50,11 +50,14 @@ export interface ICheckListItem {
 		id: string
 	}
 	url: string
+	exercise: {
+		id: string
+	}
 	youTube: {
 		id: string
 		videoId: string
 	}
-	exercise: {
+	slide: {
 		id: string
 	}
 	description: string
@@ -155,4 +158,18 @@ export interface IChecklistItemProgress {
 	id: string
 	checked: boolean
 	duration: number
+}
+
+/**
+ * Slides
+ */
+
+export interface ISlide {
+	title: string
+	slideUrl: string
+	slidesStyle: SlidesType
+	slideX: number
+	slideY: number
+	hideByLine: boolean
+	hideShareButton: boolean
 }

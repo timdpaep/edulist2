@@ -20,7 +20,12 @@ const App: React.FC = () => {
 				</Switch>
 			</Router>
 			<EduSideBar open={sideBar.open} type={sideBar.type} value={sideBar.value} />
-			<EduModal open={modal.open} title={modal.title} content={modal.content} />
+			<EduModal
+				open={modal.open}
+				title={modal.title}
+				type={modal.type}
+				value={modal.value}
+			/>
 		</>
 	)
 }

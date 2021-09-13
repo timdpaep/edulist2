@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { EduSideBarType } from 'enums'
 import { setSideBar } from '../redux/appSlice'
 import { useAppDispatch } from '../Hooks'
 import { SideBar } from '../Components/SideBar'
@@ -10,13 +11,13 @@ import { Exercise, YouTube } from '.'
 
 interface IEduSideBarProps {
 	open: boolean
-	type?: string
+	type?: EduSideBarType
 	value?: string
 }
 
 export default ({
 	open = false,
-	type = 'text',
+	type = EduSideBarType.None,
 	value = 'Dit is een test',
 }: IEduSideBarProps) => {
 	const dispatch = useAppDispatch()
@@ -40,13 +41,13 @@ export default ({
 			onClosed={() => dispatch(setSideBar({ open: false, value: '' }))}
 			onAnimationEnded={isOpen => setSidebarOpened(isOpen)}
 		>
-			{currentType === 'youtube' && sidebarOpened && (
+			{currentType === EduSideBarType.YouTube && sidebarOpened && (
 				<YouTube
 					youtubeId={value}
 					loadingChanged={loading => setIsLoading(loading)}
 				/>
 			)}
-			{currentType === 'exercise' && sidebarOpened && (
+			{currentType === EduSideBarType.Exercise && sidebarOpened && (
 				<Exercise
 					exerciseId={value}
 					loadingChanged={loading => setIsLoading(loading)}

@@ -5,11 +5,14 @@ import {
 	CheckListPdfButton,
 	CheckListLinkButton,
 	CheckListSideBarButton,
+	CheckListModalButton,
 } from './CheckListButtons'
 import { ICheckListItem } from '../interfaces'
 import { IconButtonType } from '../enums'
 import { useCheckListItem } from '../Hooks'
 import device from '../device'
+import { eduSideBarTypeFromIconButtonType } from './CheckListButtons/CheckListSideBarButton'
+import { eduModalTypeFromIconButtonType } from './CheckListButtons/CheckListModalButton'
 
 /**
  * Types
@@ -69,6 +72,10 @@ export const CheckListItem = ({
 			/>
 
 			{(() => {
+				/**
+				 * Assets
+				 */
+
 				if (iconButtonType === IconButtonType.Asset) {
 					return (
 						<CheckListAssetButton
@@ -77,6 +84,11 @@ export const CheckListItem = ({
 						/>
 					)
 				}
+
+				/**
+				 * PDF
+				 */
+
 				if (iconButtonType === IconButtonType.Pdf) {
 					return (
 						<CheckListPdfButton
@@ -85,6 +97,11 @@ export const CheckListItem = ({
 						/>
 					)
 				}
+
+				/**
+				 * Link | GitHub
+				 */
+
 				if (
 					iconButtonType === IconButtonType.Link ||
 					iconButtonType === IconButtonType.GitHub
@@ -98,12 +115,18 @@ export const CheckListItem = ({
 						/>
 					)
 				}
+
+				/**
+				 * YouTube | Exercise
+				 */
+
 				if (
 					iconButtonType === IconButtonType.YouTube ||
 					iconButtonType === IconButtonType.Exercise
 				) {
 					return (
 						<CheckListSideBarButton
+							eduSidebarType={eduSideBarTypeFromIconButtonType(iconButtonType)}
 							iconButtonType={iconButtonType}
 							value={
 								iconButtonType === IconButtonType.YouTube
@@ -114,6 +137,26 @@ export const CheckListItem = ({
 						/>
 					)
 				}
+
+				/**
+				 * Slides
+				 */
+
+				if (iconButtonType === IconButtonType.Slides) {
+					return (
+						<CheckListModalButton
+							iconButtonType={iconButtonType}
+							eduModalType={eduModalTypeFromIconButtonType(iconButtonType)}
+							value={checkListItem.slide.id}
+							disabled={isChecked}
+						/>
+					)
+				}
+
+				/**
+				 * Last type hero...
+				 */
+
 				return null
 			})()}
 		</CheckListItemContainer>

@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react'
-import { HeaderButtons, Button } from '.'
+import { HeaderButtons, Button, SvgIcon } from '.'
 import canvasLogo from '../images/canvas.svg'
 import teamsLogo from '../images/ms-teams.svg'
 
@@ -19,12 +19,12 @@ export const CourseHeaderButtons = ({
 	<HeaderButtons>
 		{showCanvas && (
 			<Button color='orange' onClick={onCanvasClicked}>
-				<img style={{ width: '1em' }} src={canvasLogo} alt='Canvas Logo' />
+				<SvgIcon source={canvasLogo} title='Canvas Logo' />
 			</Button>
 		)}
 		{showTeamsChannelUrl && (
 			<Button color='teamsPurple' onClick={onTeamsChannelClicked}>
-				<img style={{ width: '1em' }} src={teamsLogo} alt='Teams Logo' />
+				<SvgIcon source={teamsLogo} title='Teams Logo' />
 			</Button>
 		)}
 	</HeaderButtons>

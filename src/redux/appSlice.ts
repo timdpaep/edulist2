@@ -1,16 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { EduModalType, EduSideBarType } from 'enums'
 import type { RootState } from '../store'
 
 interface SideBarState {
 	open: boolean
-	type?: string
+	type?: EduSideBarType
 	value?: string
 }
 
 interface ModalState {
 	open: boolean
 	title?: string
-	content: string
+	type: EduModalType
+	value: string
 }
 
 // Define a type for the slice state
@@ -23,13 +25,14 @@ interface AppState {
 const initialState: AppState = {
 	sideBar: {
 		open: false,
-		type: 'text',
+		type: EduSideBarType.None,
 		value: '',
 	},
 	modal: {
 		open: false,
 		title: '',
-		content: '',
+		value: '',
+		type: EduModalType.None,
 	},
 }
 

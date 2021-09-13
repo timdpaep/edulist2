@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ICheckListItem } from 'interfaces'
-import { IconButtonType } from 'enums'
+import { EduModalType, IconButtonType } from 'enums'
 import { useEduModal } from 'Hooks'
 import dayjs from 'dayjs'
 import { CheckListYouTubeDescription } from './CheckListDescriptions'
@@ -58,7 +58,12 @@ export const CheckListItemDescription = ({
 			>
 				{checkListItem.bigDescription ? (
 					<LinkButton
-						onClick={() => openModal({ content: checkListItem.bigDescription })}
+						onClick={() =>
+							openModal({
+								type: EduModalType.None,
+								value: checkListItem.bigDescription,
+							})
+						}
 						disabled={isChecked}
 						className='checklistitem-link-button'
 					>
