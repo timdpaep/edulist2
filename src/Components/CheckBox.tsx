@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 interface CheckBoxProps {
@@ -8,7 +9,25 @@ interface CheckBoxProps {
 	strokeWidth?: number
 	checked?: boolean
 	checkedChanged?: (checked: boolean) => void
+	style?: React.CSSProperties
 }
+
+/**
+ * Styled Components
+ */
+
+const CheckboxElement = styled.div`
+	input {
+		position: absolute;
+		width: 2.4rem;
+		height: 2.4rem;
+		opacity: 0;
+	}
+
+	input:focus ~ svg rect {
+		opacity: 0.5 !important;
+	}
+`
 
 /**
  * Framer Motion Variants
@@ -63,6 +82,7 @@ export const CheckBox = ({
 	strokeWidth = 6,
 	checked = false,
 	checkedChanged,
+	style = {},
 }: CheckBoxProps) => {
 	const [isChecked, setIsChecked] = useState<boolean>(checked)
 
@@ -71,50 +91,60 @@ export const CheckBox = ({
 	}, [checked])
 
 	return (
-		<div
-			style={{
-				width: checkBoxWidth,
-				height: checkBoxHeight,
-			}}
-		>
-			<motion.svg
-				animate={isChecked ? 'checked' : 'unchecked'}
-				initial='unchecked'
-				whileHover='hover'
-				whileTap='pressed'
-				viewBox='0 0 100 100'
-				onClick={() => {
-					if (checkedChanged) checkedChanged(!isChecked)
-					setIsChecked(!isChecked)
+		<CheckboxElement style={style}>
+			<div
+				style={{
+					width: checkBoxWidth,
+					height: checkBoxHeight,
 				}}
 			>
-				<motion.rect
-					fillRule='nonzero'
-					width={100 - strokeWidth}
-					height={100 - strokeWidth}
-					fill='transparent'
-					strokeWidth={strokeWidth}
-					x={strokeWidth / 2}
-					y={strokeWidth / 2}
-					variants={rectVariants({
-						borderColor: strokeColor,
-					})}
+				<input
+					type='checkbox'
+					onClick={() => {
+						if (checkedChanged) checkedChanged(!isChecked)
+						setIsChecked(!isChecked)
+					}}
 				/>
-				<motion.path
-					d='M 20 20 L 80 80'
-					strokeWidth={strokeWidth}
-					variants={pathVariants({
-						strokeColor,
-					})}
-				/>
-				<motion.path
-					d='M 80 20 L 20 80'
-					strokeWidth={strokeWidth}
-					variants={pathVariants({
-						strokeColor,
-					})}
-				/>
-			</motion.svg>
-		</div>
+
+				<motion.svg
+					animate={isChecked ? 'checked' : 'unchecked'}
+					initial='unchecked'
+					whileHover='hover'
+					whileTap='pressed'
+					viewBox='0 0 100 100'
+					onClick={() => {
+						if (checkedChanged) checkedChanged(!isChecked)
+						setIsChecked(!isChecked)
+					}}
+				>
+					<motion.rect
+						fillRule='nonzero'
+						width={100 - strokeWidth}
+						height={100 - strokeWidth}
+						fill='transparent'
+						strokeWidth={strokeWidth}
+						x={strokeWidth / 2}
+						y={strokeWidth / 2}
+						variants={rectVariants({
+							borderColor: strokeColor,
+						})}
+					/>
+					<motion.path
+						d='M 20 20 L 80 80'
+						strokeWidth={strokeWidth}
+						variants={pathVariants({
+							strokeColor,
+						})}
+					/>
+					<motion.path
+						d='M 80 20 L 20 80'
+						strokeWidth={strokeWidth}
+						variants={pathVariants({
+							strokeColor,
+						})}
+					/>
+				</motion.svg>
+			</div>
+		</CheckboxElement>
 	)
 }
