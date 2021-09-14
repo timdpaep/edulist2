@@ -67,17 +67,14 @@
   }
 }
 
-/* @media screen and (min-width: 1024px) {
-  .edu-modal-slides {
-    width: 1152px;
-    height: 840px;
-  }
-} */
-
 .ReactModal__Content {
     opacity: 0;
     transform: translateY(100px);
     transition: all 200ms ease-in-out;
+}
+
+.ReactModal__Content:focus {
+  outline: none !important;
 }
 
 .ReactModal__Content--after-open{
