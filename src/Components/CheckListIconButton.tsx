@@ -89,6 +89,12 @@ export const CheckListIconButton = ({
 			variants={iconButtonVariants}
 			animate={checkListIconButtonControls}
 			onClick={onClick}
+			onFocus={() => {
+				checkListIconButtonControls.start('hover')
+			}}
+			onBlur={() => {
+				checkListIconButtonControls.start('default')
+			}}
 			onHoverStart={() => {
 				if (!isDisabled) checkListIconButtonControls.start('hover')
 			}}
