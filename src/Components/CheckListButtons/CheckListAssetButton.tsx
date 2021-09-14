@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { IconButtonType } from 'enums'
-import { IAsset } from '../../interfaces'
+import { IAsset, ICheckListItem } from '../../interfaces'
 import { GET_ASSET } from '../../graphql/queries'
 import { useDownloadFile } from '../../Hooks'
 import { CheckListIconButton } from '..'
@@ -9,6 +9,7 @@ import { CheckListIconButton } from '..'
 interface ICheckListAssetProp {
 	assetId: string
 	disabled?: boolean
+	checkListItem: ICheckListItem
 }
 
 interface ICheckListAssetData {
@@ -18,6 +19,7 @@ interface ICheckListAssetData {
 export const CheckListAssetButton = ({
 	assetId,
 	disabled = false,
+	checkListItem,
 }: ICheckListAssetProp) => {
 	const { downloadFile } = useDownloadFile()
 	const [getAssetdata, { data: assetData }] = useLazyQuery<ICheckListAssetData>(
@@ -38,6 +40,7 @@ export const CheckListAssetButton = ({
 			iconButtonType={IconButtonType.Asset}
 			onClick={() => getAssetdata()}
 			disabled={disabled}
+			checkListItem={checkListItem}
 		/>
 	)
 }

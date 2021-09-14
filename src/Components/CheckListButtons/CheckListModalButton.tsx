@@ -1,6 +1,7 @@
 import { EduModalType, IconButtonType } from 'enums'
 import { CheckListIconButton } from '..'
 import { useEduModal } from '../../Hooks'
+import { ICheckListItem } from '../../interfaces'
 
 /**
  * TypeScript
@@ -11,6 +12,7 @@ interface ICheckListSlidesButtonProp {
 	iconButtonType: IconButtonType
 	value: string
 	disabled?: boolean
+	checkListItem: ICheckListItem
 }
 
 /**
@@ -35,6 +37,7 @@ export const CheckListModalButton = ({
 	iconButtonType = IconButtonType.None,
 	value = '',
 	disabled = false,
+	checkListItem,
 }: ICheckListSlidesButtonProp) => {
 	const { openModal } = useEduModal()
 
@@ -43,6 +46,7 @@ export const CheckListModalButton = ({
 			onClick={() => openModal({ value, type: eduModalType })}
 			iconButtonType={iconButtonType}
 			disabled={disabled}
+			checkListItem={checkListItem}
 		/>
 	)
 }

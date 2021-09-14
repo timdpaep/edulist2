@@ -1,9 +1,10 @@
 import { useState, MouseEvent, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
-import { ButtonIcon } from '.'
+import { ButtonIcon, CheckListItemDescription } from '.'
 import { IconButtonType } from '../enums'
 import device from '../device'
+import { ICheckListItem } from '../interfaces'
 
 /**
  * Types
@@ -13,6 +14,7 @@ interface IIconButtonProps {
 	iconButtonType?: IconButtonType
 	onClick?: (event: MouseEvent<HTMLButtonElement>) => void
 	disabled?: boolean
+	checkListItem: ICheckListItem
 }
 
 interface IIconButtonContainerProps {
@@ -26,22 +28,21 @@ interface IIconButtonContainerProps {
 const iconButtonVariants = {
 	default: {
 		opacity: 1,
-		scale: 1,
+		textDecoration: 'none',
 	},
 	hover: {
-		opacity: 0.5,
+		opacity: 0.9,
+		textDecoration: 'underline',
 		transition: {
 			duration: 0.1,
 		},
 	},
 	pressed: {
-		scale: 0.9,
 		transition: {
 			duration: 0.1,
 		},
 	},
 	disabled: {
-		scale: 1,
 		transition: {
 			duration: 0.3,
 		},
@@ -53,17 +54,15 @@ const iconButtonVariants = {
  */
 
 const IconButtonContainer = styled(motion.button)<IIconButtonContainerProps>`
-	border-radius: 50%;
-	width: calc(2 * var(--checklist-item-size-mobile));
-	height: calc(2 * var(--checklist-item-size-mobile));
 	transform-origin: center;
-	background-color: var(--ib-${props => props.iconButtonType}-background-color);
-	box-shadow: var(--level-2);
 	font-size: var(--checklist-item-size-mobile);
+	display: flex;
+	justify-content: space-between;
+	background: transparent;
+	border-radius: 0;
+	padding: 0;
 
 	@media ${device.mobile} {
-		width: calc(2 * var(--checklist-item-size));
-		height: calc(2 * var(--checklist-item-size));
 		font-size: var(--checklist-item-size);
 	}
 `
@@ -72,6 +71,7 @@ export const CheckListIconButton = ({
 	iconButtonType = IconButtonType.Default,
 	onClick,
 	disabled = false,
+	checkListItem,
 }: IIconButtonProps) => {
 	const checkListIconButtonControls = useAnimation()
 	const [isDisabled] = useState(disabled)
@@ -109,7 +109,28 @@ export const CheckListIconButton = ({
 			}}
 			disabled={isDisabled}
 		>
-			<ButtonIcon iconButtonType={iconButtonType} />
+			<CheckListItemDescription
+				checkListItem={checkListItem}
+				checked={isDisabled}
+			/>
+
+			<div
+				style={{
+					width: '2.4rem',
+					height: '2.4rem',
+					backgroundColor: `var(--ib-${iconButtonType}-background-color)`,
+					borderRadius: '50%',
+					boxShadow: 'var(--level-2)',
+					flex: '0 0 auto',
+					textAlign: 'center',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					color: 'white',
+				}}
+			>
+				<ButtonIcon iconButtonType={iconButtonType} />
+			</div>
 		</IconButtonContainer>
 	)
 }

@@ -1,12 +1,14 @@
 import { EduSideBarType, IconButtonType } from 'enums'
 import { CheckListIconButton } from '..'
 import { useEduSideBar } from '../../Hooks'
+import { ICheckListItem } from '../../interfaces'
 
 interface ICheckListSideBarButtonProp {
 	eduSidebarType: EduSideBarType
 	iconButtonType: IconButtonType
 	value: string
 	disabled?: boolean
+	checkListItem: ICheckListItem
 }
 
 /**
@@ -33,6 +35,7 @@ export const CheckListSideBarButton = ({
 	iconButtonType,
 	value,
 	disabled = false,
+	checkListItem,
 }: ICheckListSideBarButtonProp) => {
 	const { openSideBar } = useEduSideBar()
 	return (
@@ -40,6 +43,7 @@ export const CheckListSideBarButton = ({
 			onClick={() => openSideBar(eduSidebarType, value)}
 			iconButtonType={iconButtonType}
 			disabled={disabled}
+			checkListItem={checkListItem}
 		/>
 	)
 }

@@ -51,6 +51,9 @@ export const CheckListItemDescription = ({
 				animate={isChecked ? 'checked' : 'unchecked'}
 				style={{
 					display: 'flex',
+					alignSelf: 'center',
+					color: 'var(--black)',
+					textDecoration: 'inherit',
 				}}
 			>
 				{checkListItem.bigDescription ? (
