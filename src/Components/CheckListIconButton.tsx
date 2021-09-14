@@ -42,7 +42,6 @@ const iconButtonVariants = {
 	},
 	disabled: {
 		scale: 1,
-		opacity: 0.2,
 		transition: {
 			duration: 0.3,
 		},
@@ -75,12 +74,11 @@ export const CheckListIconButton = ({
 	disabled = false,
 }: IIconButtonProps) => {
 	const checkListIconButtonControls = useAnimation()
-	const [isDisabled, setIsDisabled] = useState(disabled)
+	const [isDisabled] = useState(disabled)
 
 	useEffect(() => {
 		if (disabled) checkListIconButtonControls.start('disabled')
 		else checkListIconButtonControls.start('default')
-		setIsDisabled(disabled)
 	}, [disabled])
 
 	if (iconButtonType === IconButtonType.None) return null

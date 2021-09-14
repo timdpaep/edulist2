@@ -22,13 +22,11 @@ interface IChecklistItemDescriptionProps {
 
 const checkedVariants = {
 	checked: {
-		opacity: 0.4,
 		transition: {
 			duration: 0.2,
 		},
 	},
 	unchecked: {
-		opacity: 1,
 		transition: {
 			duration: 0.2,
 		},
@@ -52,7 +50,6 @@ export const CheckListItemDescription = ({
 				variants={checkedVariants}
 				animate={isChecked ? 'checked' : 'unchecked'}
 				style={{
-					textDecoration: isChecked ? 'line-through' : 'none',
 					display: 'flex',
 				}}
 			>
