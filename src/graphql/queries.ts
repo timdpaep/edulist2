@@ -57,6 +57,9 @@ const CHECKLIST = gql`
 					slide {
 						id
 					}
+					mdDoc {
+						id
+					}
 					asset {
 						id
 					}
@@ -121,6 +124,18 @@ const EXERCISE = gql`
 	}
 `
 
+const MDDOC = gql`
+	query MdDoc($id: ID!) {
+		mdDoc(where: { id: $id }) {
+			title
+			author
+			urlRoot
+			mdRawUrl
+			mdSourceUrl
+		}
+	}
+`
+
 const YOUTUBE = gql`
 	query YouTube($id: ID!) {
 		youTube(where: { id: $id }) {
@@ -174,4 +189,5 @@ export {
 	GET_ASSET,
 	YOUTUBE,
 	SLIDE,
+	MDDOC,
 }

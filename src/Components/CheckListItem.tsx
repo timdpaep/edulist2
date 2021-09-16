@@ -122,17 +122,25 @@ export const CheckListItem = ({
 
 				if (
 					iconButtonType === IconButtonType.YouTube ||
-					iconButtonType === IconButtonType.Exercise
+					iconButtonType === IconButtonType.Exercise ||
+					iconButtonType === IconButtonType.MdDoc
 				) {
 					return (
 						<CheckListSideBarButton
 							eduSidebarType={eduSideBarTypeFromIconButtonType(iconButtonType)}
 							iconButtonType={iconButtonType}
-							value={
-								iconButtonType === IconButtonType.YouTube
-									? checkListItem.youTube.id
-									: checkListItem.exercise.id
-							}
+							value={(() => {
+								switch (iconButtonType) {
+									case IconButtonType.YouTube:
+										return checkListItem.youTube.id
+									case IconButtonType.Exercise:
+										return checkListItem.exercise.id
+									case IconButtonType.MdDoc:
+										return checkListItem.mdDoc.id
+									default:
+										return ''
+								}
+							})()}
 							disabled={isChecked}
 						/>
 					)

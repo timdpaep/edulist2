@@ -12,6 +12,7 @@ export enum IconButtonType {
 	Pdf = 'pdf',
 	YouTube = 'youtube',
 	Slides = 'slides',
+	MdDoc = 'mddoc',
 }
 
 export enum ReferenceType {
@@ -29,6 +30,7 @@ export enum EduSideBarType {
 	None = 'none',
 	YouTube = 'youtube',
 	Exercise = 'exercise',
+	MdDoc = 'mddoc',
 }
 
 /**

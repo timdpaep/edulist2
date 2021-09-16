@@ -9,6 +9,7 @@ import {
 	faLink,
 	faEdit,
 	faDownload,
+	faGlasses,
 } from '@fortawesome/free-solid-svg-icons'
 import { IconButtonType } from '../enums'
 import slidesIcon from '../images/slides.svg'
@@ -44,6 +45,9 @@ export const ButtonIcon = ({
 		)}
 		{iconButtonType === IconButtonType.Asset && (
 			<FontAwesomeIcon icon={faDownload} />
+		)}
+		{iconButtonType === IconButtonType.MdDoc && (
+			<FontAwesomeIcon icon={faGlasses} />
 		)}
 		{iconButtonType === IconButtonType.Slides && (
 			<SvgIcon

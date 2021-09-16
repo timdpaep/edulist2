@@ -3,7 +3,7 @@ import { EduSideBarType } from 'enums'
 import { setSideBar } from '../redux/appSlice'
 import { useAppDispatch } from '../Hooks'
 import { SideBar } from '../Components/SideBar'
-import { Exercise, YouTube } from '.'
+import { Exercise, YouTube, MdDoc } from '.'
 
 /**
  * Interfaces
@@ -18,7 +18,7 @@ interface IEduSideBarProps {
 export default ({
 	open = false,
 	type = EduSideBarType.None,
-	value = 'Dit is een test',
+	value = '',
 }: IEduSideBarProps) => {
 	const dispatch = useAppDispatch()
 	const [currentType, setCurrentType] = useState('none')
@@ -52,6 +52,9 @@ export default ({
 					exerciseId={value}
 					loadingChanged={loading => setIsLoading(loading)}
 				/>
+			)}
+			{currentType === EduSideBarType.MdDoc && sidebarOpened && (
+				<MdDoc mdDocId={value} loadingChanged={loading => setIsLoading(loading)} />
 			)}
 		</SideBar>
 	)

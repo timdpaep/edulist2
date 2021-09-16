@@ -60,6 +60,9 @@ export interface ICheckListItem {
 	slide: {
 		id: string
 	}
+	mdDoc: {
+		id: string
+	}
 	description: string
 	bigDescription: string
 }
@@ -99,6 +102,18 @@ export interface IYouTubeVideoDetails {
 	tags: string[]
 	duration: string
 	readableDuration: string
+}
+
+/**
+ * MdDoc
+ */
+
+export interface IMdDoc {
+	title: string
+	author: string
+	urlRoot?: string
+	mdRawUrl: string
+	mdSourceUrl: string
 }
 
 /**

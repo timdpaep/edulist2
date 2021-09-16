@@ -41,6 +41,7 @@
   --ib-pdf-background-color: #FF2800;
   --ib-asset-background-color: var(--purple);
   --ib-slides-background-color: #D65D73;
+  --ib-mddoc-background-color: var(--purple);
 
   /* Button */
   --button-padding: 7px;

@@ -23,6 +23,8 @@ export const eduSideBarTypeFromIconButtonType = (
 			return EduSideBarType.Exercise
 		case IconButtonType.YouTube:
 			return EduSideBarType.YouTube
+		case IconButtonType.MdDoc:
+			return EduSideBarType.MdDoc
 		default:
 			return EduSideBarType.None
 	}
