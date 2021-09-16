@@ -54,6 +54,29 @@ const Li = styled.li`
 	}
 `
 
+const Table = styled.table`
+	width: 100%;
+	background-color: var(--white);
+	border-collapse: collapse;
+	border-width: 2px;
+	border-color: var(--purple);
+	border-style: solid;
+	color: var(--black);
+
+	& td,
+	& th {
+		border-width: 2px;
+		border-color: var(--purple);
+		border-style: solid;
+		padding: 3px;
+	}
+
+	& thead {
+		color: var(--white);
+		background-color: var(--purple);
+	}
+`
+
 const BlockQuote = styled.blockquote`
 	padding: 20px;
 	background-color: var(--lightGrey);
@@ -109,6 +132,7 @@ export const ReactMarkdownCustom: React.FC<IReactMarkdownCustom> = ({
 		ol: ({ children }: any) => <Ol>{children}</Ol>,
 		ul: ({ children }: any) => <Ul>{children}</Ul>,
 		p: ({ children }: any) => <P>{children}</P>,
+		table: ({ children }: any) => <Table>{children}</Table>,
 		blockquote: ({ children }: any) => <BlockQuote>{children}</BlockQuote>,
 		a: (props: any) => {
 			if (props.href.startsWith('http'))
