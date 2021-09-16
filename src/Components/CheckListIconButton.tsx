@@ -65,6 +65,20 @@ const IconButtonContainer = styled(motion.button)<IIconButtonContainerProps>`
 	@media ${device.mobile} {
 		font-size: var(--checklist-item-size);
 	}
+
+	.icon-wrapper {
+		width: 2.4rem;
+		height: 2.4rem;
+		background-color: var(--ib-${props => props.iconButtonType}-background-color);
+		border-radius: 50%;
+		box-shadow: var(--level-2);
+		flex: 0 0 auto;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+	}
 `
 
 export const CheckListIconButton = ({
@@ -114,21 +128,7 @@ export const CheckListIconButton = ({
 				checked={isDisabled}
 			/>
 
-			<div
-				style={{
-					width: '2.4rem',
-					height: '2.4rem',
-					backgroundColor: `var(--ib-${iconButtonType}-background-color)`,
-					borderRadius: '50%',
-					boxShadow: 'var(--level-2)',
-					flex: '0 0 auto',
-					textAlign: 'center',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					color: 'white',
-				}}
-			>
+			<div className='icon-wrapper'>
 				<ButtonIcon iconButtonType={iconButtonType} />
 			</div>
 		</IconButtonContainer>
