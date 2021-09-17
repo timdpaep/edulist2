@@ -88,11 +88,11 @@ const BlockQuote = styled.blockquote`
 `
 
 const Ol = styled.ol`
-	padding-left: 1em;
+	padding-left: 2em;
 `
 
 const Ul = styled.ul`
-	padding-left: 1em;
+	padding-left: 2em;
 `
 
 export const ReactMarkdownCustom: React.FC<IReactMarkdownCustom> = ({
