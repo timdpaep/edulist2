@@ -10,7 +10,8 @@
   --blue: #109ad4;
   --black: #141414;
   --white: #ffffff;
-  --lightGrey: rgba(0,0,0,.03);
+  --lightGrey: rgba(247, 247, 247, 1);
+  --lightGreyTransparant: rgba(0,0,0,.03);
   --lightPurple: rgba(126, 87, 197, 0.05);
   --teamsPurple: #464EB8;
   --red: #FF0000;

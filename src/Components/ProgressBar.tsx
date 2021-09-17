@@ -29,7 +29,10 @@ interface IBarFillingProps {
 
 const Bar = styled.div<IBarProps>`
 	overflow: hidden;
-	position: relative;
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 98;
 	background-color: var(--lightGrey);
 	width: ${props => (props.width ? props.width : '100%')};
 	height: ${props => (props.height ? props.height : '100%')};
