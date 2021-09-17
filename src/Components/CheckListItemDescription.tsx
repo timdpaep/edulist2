@@ -88,7 +88,9 @@ export const CheckListItemDescription = ({
 							<>
 								{checkListItem.description}{' '}
 								{checkListItem.duration
-									? `(${dayjs.duration(checkListItem.duration * 1000).format('mm:ss')})`
+									? `(${dayjs
+											.duration(checkListItem.duration * 1000)
+											.format('HH[u]mm[m]ss[s]')})`
 									: ''}
 							</>
 						)}
