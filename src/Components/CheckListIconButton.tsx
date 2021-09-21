@@ -28,24 +28,6 @@ interface IIconButtonContainerProps {
 const iconButtonVariants = {
 	default: {
 		opacity: 1,
-		textDecoration: 'none',
-	},
-	hover: {
-		opacity: 0.9,
-		textDecoration: 'underline',
-		transition: {
-			duration: 0.1,
-		},
-	},
-	pressed: {
-		transition: {
-			duration: 0.1,
-		},
-	},
-	disabled: {
-		transition: {
-			duration: 0.3,
-		},
 	},
 }
 
@@ -62,8 +44,26 @@ const IconButtonContainer = styled(motion.button)<IIconButtonContainerProps>`
 	border-radius: 0;
 	padding: 0;
 
+	:hover,
+	:focus {
+		text-decoration: underline;
+	}
 	@media ${device.mobile} {
 		font-size: var(--checklist-item-size);
+	}
+
+	.title__main {
+		font-size: var(--checklist-item-size);
+		width: 100%;
+		display: inline-block;
+		text-decoration: inherit;
+		left: 0;
+	}
+
+	.title__sub {
+		font-size: 0.9rem;
+		text-decoration: inherit;
+		left: 0;
 	}
 
 	.icon-wrapper {
@@ -78,6 +78,13 @@ const IconButtonContainer = styled(motion.button)<IIconButtonContainerProps>`
 		align-items: center;
 		justify-content: center;
 		color: white;
+		transition: all 0.2s ease;
+	}
+
+	:hover .icon-wrapper,
+	:focus .icon-wrapper {
+		box-shadow: var(--level-1);
+		transform: scale(1.05);
 	}
 `
 
@@ -103,24 +110,6 @@ export const CheckListIconButton = ({
 			variants={iconButtonVariants}
 			animate={checkListIconButtonControls}
 			onClick={onClick}
-			onFocus={() => {
-				checkListIconButtonControls.start('hover')
-			}}
-			onBlur={() => {
-				checkListIconButtonControls.start('default')
-			}}
-			onHoverStart={() => {
-				if (!isDisabled) checkListIconButtonControls.start('hover')
-			}}
-			onHoverEnd={() => {
-				if (!isDisabled) checkListIconButtonControls.start('default')
-			}}
-			onTapStart={() => {
-				if (!isDisabled) checkListIconButtonControls.start('pressed')
-			}}
-			onTap={() => {
-				if (!isDisabled) checkListIconButtonControls.start('default')
-			}}
 			disabled={isDisabled}
 		>
 			<CheckListItemDescription
