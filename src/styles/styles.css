@@ -7,7 +7,6 @@
  */
 
 @import './normalize.css';
-@import '../../node_modules/@vime/core/themes/default.css';
 
 /**
  * Import app related styles
@@ -22,3 +21,4 @@
  */
 
 @import './edu-modal.css';
+@import '../../node_modules/@vime/core/themes/default.css';

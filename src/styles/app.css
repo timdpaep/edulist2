@@ -60,6 +60,10 @@ img {
   background: var(--blue);
 }
 
+.player {
+ padding-top: 56.25% !important;
+}
+
 /**
  * Typography
  */
