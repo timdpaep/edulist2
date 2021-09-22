@@ -1,8 +1,13 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
-import ReactPlayer from 'react-player/lazy'
+// import ReactPlayer from 'react-player/lazy'
 import { useYouTube, useReferences } from 'Hooks'
-import { Loader, ReferenceSection, AssetsSection } from '../Components'
+import {
+	Loader,
+	ReferenceSection,
+	AssetsSection,
+	YouTubePlayer,
+} from '../Components'
 
 /**
  * Types
@@ -57,27 +62,7 @@ export default ({ youtubeId, loadingChanged }: IYouTubeProps) => {
 
 	return (
 		<YouTubeContainer>
-			<ReactPlayer
-				url={`https://www.youtube.com/watch?v=${youTubeVideoDetails.id}`}
-				style={{
-					borderRadius: 5,
-				}}
-				playing
-				className='react-player'
-				width='100%'
-				controls
-				volume={0.5}
-				config={{
-					youtube: {
-						playerVars: {
-							modestbranding: 1,
-							showinfo: 0,
-							showsearch: 0,
-							fs: 1,
-						},
-					},
-				}}
-			/>
+			<YouTubePlayer videoId={youTubeVideoDetails.id} />
 			<h2>{youTubeVideoDetails.title}</h2>
 			<YouTubeInfoContainer
 				asideVisible={
