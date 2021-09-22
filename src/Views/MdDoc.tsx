@@ -62,6 +62,9 @@ export default ({ mdDocId, loadingChanged }: IMdDocProps) => {
 		<>
 			<MdDocHeaderContainer>
 				Bron: <Link href={data.mdDoc.mdSourceUrl}>{data.mdDoc.author}</Link>
+				{data.mdDoc.extraInformation && (
+					<ReactMarkdownCustom markdown={data.mdDoc.extraInformation} />
+				)}
 			</MdDocHeaderContainer>
 			{!markdown.startsWith('#') && <h1>{data.mdDoc.title}</h1>}
 			<ReactMarkdownCustom urlRoot={data.mdDoc.urlRoot} markdown={markdown} />

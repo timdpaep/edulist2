@@ -110,6 +110,7 @@ export interface IYouTubeVideoDetails {
 
 export interface IMdDoc {
 	title: string
+	extraInformation?: string
 	author: string
 	urlRoot?: string
 	mdRawUrl: string

@@ -128,6 +128,7 @@ const MDDOC = gql`
 	query MdDoc($id: ID!) {
 		mdDoc(where: { id: $id }) {
 			title
+			extraInformation
 			author
 			urlRoot
 			mdRawUrl
