@@ -22,11 +22,7 @@ interface IYouTubeProps {
  * Styled Components
  */
 
-const YouTubeContainer = styled.div`
-	iframe {
-		width: 100%;
-	}
-`
+const YouTubeContainer = styled.div``
 
 const YouTubeInfoContainer = styled.div<{ asideVisible: boolean }>`
 	display: grid;

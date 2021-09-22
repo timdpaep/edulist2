@@ -7,7 +7,7 @@ interface IYouTubePlayerProps {
 
 export const YouTubePlayer = ({ videoId }: IYouTubePlayerProps) => (
 	<Player volume={50}>
-		<Youtube showFullscreenControl videoId={videoId} />
+		<Youtube videoId={videoId} />
 		<DefaultUi />
 	</Player>
 )
