@@ -1,6 +1,7 @@
 import React from 'react'
-// import { Player, Youtube } from '@vime/react'
-import ReactPlayer from 'react-player/lazy'
+import { Player, Youtube } from '@vime/react'
+import '@vime/core/themes/default.css'
+// import ReactPlayer from 'react-player/lazy'
 
 interface IYouTubePlayerProps {
 	videoId: string
@@ -8,12 +9,11 @@ interface IYouTubePlayerProps {
 
 export const YouTubePlayer = ({ videoId }: IYouTubePlayerProps) => (
 	<>
-		{/*
-		Leave this, there is a bug in Vime. Waiting until it's fixed.
-		<Player isVideoView volume={50}>
+		{/* Leave this, there is a bug in Vime. Waiting until it's fixed. */}
+		<Player controls autoplay isVideoView volume={50}>
 			<Youtube videoId={videoId} />
-		</Player> */}
-		<ReactPlayer
+		</Player>
+		{/* <ReactPlayer
 			url={`https://www.youtube.com/watch?v=${videoId}`}
 			style={{
 				borderRadius: 5,
@@ -33,6 +33,6 @@ export const YouTubePlayer = ({ videoId }: IYouTubePlayerProps) => (
 					},
 				},
 			}}
-		/>
+		/> */}
 	</>
 )
