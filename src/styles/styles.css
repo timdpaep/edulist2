@@ -17,8 +17,8 @@
 @import './app.css';
 
 /**
- * Import componets for app
+ * Import components for app
  */
 
 @import './edu-modal.css';
-@import '../../node_modules/@vime/core/themes/default.css';
+/* @import '../../node_modules/@vime/core/themes/default.css'; */
