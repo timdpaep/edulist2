@@ -141,10 +141,8 @@ button {
   border-radius: var(--buttonBorderRadius);
   padding: var(--buttonPadding);
   cursor: pointer;
-}
-
-button[disabled] {
-  cursor: initial;
+  border: none;
+  text-align: left;
 }
 
 button:hover:not(:disabled) {

@@ -34,3 +34,4 @@ If you'd like to contribute to this project, please fork this repository, do upd
 ## Authors
 
 - Tim De Paepe
+- Mathieu Spillebeen

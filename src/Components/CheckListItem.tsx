@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { CheckBox, CheckListItemDescription } from '.'
+import { CheckBox } from '.'
 import {
 	CheckListAssetButton,
 	CheckListPdfButton,
@@ -31,17 +31,12 @@ const CheckListItemContainer = styled.li`
 	line-height: normal;
 	margin-bottom: 1.2rem;
 	display: grid;
-	grid-template-columns: calc(2 * var(--checklist-item-size-mobile)) 1fr calc(
-			2 * var(--checklist-item-size-mobile)
-		);
+	grid-template-columns: calc(2 * var(--checklist-item-size-mobile)) 1fr;
 	column-gap: 1.5rem;
-	align-items: center;
 	justify-content: space-between;
 
 	@media ${device.mobile} {
-		grid-template-columns: calc(2 * var(--checklist-item-size)) 1fr calc(
-				2 * var(--checklist-item-size)
-			);
+		grid-template-columns: calc(2 * var(--checklist-item-size)) 1fr;
 	}
 `
 
@@ -66,11 +61,6 @@ export const CheckListItem = ({
 				checkedChanged={changeChecked}
 			/>
 
-			<CheckListItemDescription
-				checkListItem={checkListItem}
-				checked={isChecked}
-			/>
-
 			{(() => {
 				/**
 				 * Assets
@@ -81,6 +71,7 @@ export const CheckListItem = ({
 						<CheckListAssetButton
 							disabled={isChecked}
 							assetId={checkListItem.asset.id}
+							checkListItem={checkListItem}
 						/>
 					)
 				}
@@ -94,6 +85,7 @@ export const CheckListItem = ({
 						<CheckListPdfButton
 							disabled={isChecked}
 							assetId={checkListItem.asset.id}
+							checkListItem={checkListItem}
 						/>
 					)
 				}
@@ -112,6 +104,7 @@ export const CheckListItem = ({
 							url={checkListItem.url}
 							target='_blank'
 							disabled={isChecked}
+							checkListItem={checkListItem}
 						/>
 					)
 				}
@@ -142,6 +135,7 @@ export const CheckListItem = ({
 								}
 							})()}
 							disabled={isChecked}
+							checkListItem={checkListItem}
 						/>
 					)
 				}
@@ -157,6 +151,7 @@ export const CheckListItem = ({
 							eduModalType={eduModalTypeFromIconButtonType(iconButtonType)}
 							value={checkListItem.slide.id}
 							disabled={isChecked}
+							checkListItem={checkListItem}
 						/>
 					)
 				}

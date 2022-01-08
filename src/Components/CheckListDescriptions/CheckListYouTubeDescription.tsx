@@ -10,10 +10,10 @@ export const CheckListYouTubeDescription = ({
 	const { loading, youTubeVideoDetails } = useYouTube(youTubeId)
 
 	return (
-		<div>
+		<span className='title__main'>
 			{loading
 				? '...'
 				: `${youTubeVideoDetails?.title} (${youTubeVideoDetails?.readableDuration})`}
-		</div>
+		</span>
 	)
 }
