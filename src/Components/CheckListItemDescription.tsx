@@ -62,16 +62,16 @@ export const CheckListItemDescription = ({
 									? `(${dayjs.duration(checkListItem.duration * 1000).format('mm:ss')})`
 									: ''}
 							</span>
-
-							{checkListItem.bigDescription && (
-								<span className='title__sub'>{checkListItem.bigDescription}</span>
-							)}
 						</>
 					)}
 					{checkListItem.type === IconButtonType.YouTube &&
 						!checkListItem.description && (
 							<CheckListYouTubeDescription youTubeId={checkListItem.youTube.id} />
 						)}
+
+					{checkListItem.bigDescription && (
+						<span className='title__sub'>{checkListItem.bigDescription}</span>
+					)}
 				</>
 			</motion.div>
 		</>
