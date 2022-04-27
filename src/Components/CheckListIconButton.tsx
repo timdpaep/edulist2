@@ -102,8 +102,6 @@ export const CheckListIconButton = ({
 		else checkListIconButtonControls.start('default')
 	}, [disabled])
 
-	if (iconButtonType === IconButtonType.None) return null
-
 	return (
 		<IconButtonContainer
 			iconButtonType={iconButtonType}
@@ -117,9 +115,11 @@ export const CheckListIconButton = ({
 				checked={isDisabled}
 			/>
 
-			<div className='icon-wrapper'>
-				<ButtonIcon iconButtonType={iconButtonType} />
-			</div>
+			{iconButtonType !== IconButtonType.None && (
+				<div className='icon-wrapper'>
+					<ButtonIcon iconButtonType={iconButtonType} />
+				</div>
+			)}
 		</IconButtonContainer>
 	)
 }

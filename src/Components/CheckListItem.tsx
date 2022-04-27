@@ -13,6 +13,7 @@ import { useCheckListItem } from '../Hooks'
 import device from '../device'
 import { eduSideBarTypeFromIconButtonType } from './CheckListButtons/CheckListSideBarButton'
 import { eduModalTypeFromIconButtonType } from './CheckListButtons/CheckListModalButton'
+import { CheckListIconButton } from './CheckListIconButton'
 
 /**
  * Types
@@ -62,6 +63,20 @@ export const CheckListItem = ({
 			/>
 
 			{(() => {
+				/**
+				 * Assets
+				 */
+
+				if (iconButtonType === IconButtonType.None) {
+					return (
+						<CheckListIconButton
+							iconButtonType={IconButtonType.None}
+							disabled={isChecked}
+							checkListItem={checkListItem}
+						/>
+					)
+				}
+
 				/**
 				 * Assets
 				 */
