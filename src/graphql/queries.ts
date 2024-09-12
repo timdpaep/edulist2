@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 const COURSES = gql`
 	{
-		courses {
+		courses(orderBy: title_ASC) {
 			id
 			slug
 			title
